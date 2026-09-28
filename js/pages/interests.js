@@ -23,7 +23,7 @@
 
         document.getElementById('back-btn').addEventListener('click', () => {
 
-            alert('Retornando para a tela anterior...');
+            window.location.href = 'index.html';
 
         });
 
