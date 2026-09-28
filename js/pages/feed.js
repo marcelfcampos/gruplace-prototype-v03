@@ -45,3 +45,12 @@
             });
         });
 
+        /* ============================================================
+           3. BOTÃO DE FILTROS
+           ============================================================ */
+        const filterButton = document.querySelector('.filter-button');
+        if (filterButton) {
+            filterButton.addEventListener('click', () => {
+                window.location.href = '4-filtro-do-feed-aberto.html';
+            });
+        }
