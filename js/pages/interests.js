@@ -48,9 +48,7 @@
 
             } else {
 
-                alert(
-                    `Interesses salvos com sucesso: ${interests.join(', ')}!\nAvançando para a próxima etapa...`
-                );
+                window.location.href = '3-inicio-feed.html';
 
             }
 
