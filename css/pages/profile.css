@@ -1,69 +1,10 @@
 /* ============================================================
            1. VARIÁVEIS
            ============================================================ */
-        :root {
-            /* Layout */
-            --sidebar-width: 240px;
-            --right-width: 280px;
-            --content-max: 680px;
-            --page-max: 1280px;
-            --gutter: 24px;
-            --bottom-nav-h: 64px;
-
-            --safe-top: env(safe-area-inset-top, 0px);
-            --safe-bottom: env(safe-area-inset-bottom, 0px);
-
-            /* Cores */
-            --color-white: #ffffff;
-            --color-white-90: rgba(255, 255, 255, 0.90);
-
-            --color-slate-50: #f8fafc;
-            --color-slate-50-70: rgba(248, 250, 252, 0.7);
-            --color-slate-100: #f1f5f9;
-            --color-slate-200: #e2e8f0;
-            --color-slate-200-60: rgba(226, 232, 240, 0.6);
-            --color-slate-200-80: rgba(226, 232, 240, 0.8);
-            --color-slate-400: #94a3b8;
-            --color-slate-500: #64748b;
-            --color-slate-600: #475569;
-            --color-slate-700: #334155;
-            --color-slate-800: #1e293b;
-            --color-slate-900: #0f172a;
-
-            --color-indigo-950: #1e1b4b;
-
-            --color-red-50-50: rgba(254, 242, 242, 0.5);
-            --color-red-600: #dc2626;
-
-            /* Tipografia */
-            --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
-            --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-
-            /* Sombras */
-            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-
-            /* Arredondamentos */
-            --radius-lg: 0.5rem;
-            --radius-xl: 0.75rem;
-            --radius-2xl: 1rem;
-            --radius-full: 9999px;
-
-            /* Transições */
-            --transition-colors: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
-            --transition-transform: transform 150ms ease;
-            --transition-opacity: opacity 150ms ease;
-        }
 
         /* ============================================================
            2. RESET / BASE
            ============================================================ */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
 
         html,
         body {
