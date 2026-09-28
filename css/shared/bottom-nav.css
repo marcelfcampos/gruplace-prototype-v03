@@ -1,0 +1,64 @@
+/* ============================================================
+   GRUPLACE — BARRA INFERIOR COMPARTILHADA
+   Carregar DEPOIS do CSS da página. Padroniza altura, ícone,
+   rótulo e estado ativo para todas as telas (< 1024px).
+   ============================================================ */
+
+.app-bottom-nav .bottom-nav-link,
+.app-bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0.25rem 0.5rem;
+    color: var(--color-slate-400);
+    text-decoration: none;
+    transition: var(--transition-colors);
+}
+
+.app-bottom-nav .bottom-nav-link:hover,
+.app-bottom-nav .nav-item:hover {
+    color: var(--color-slate-700);
+}
+
+/* Estado ativo (vem depois do hover para vencer em empate) */
+.app-bottom-nav .bottom-nav-link-active,
+.app-bottom-nav .bottom-nav-link--active,
+.app-bottom-nav .nav-item--active,
+.app-bottom-nav a[aria-current="page"],
+.app-bottom-nav .bottom-nav-link-active:hover,
+.app-bottom-nav .bottom-nav-link--active:hover,
+.app-bottom-nav .nav-item--active:hover,
+.app-bottom-nav a[aria-current="page"]:hover {
+    color: var(--color-indigo-900);
+}
+
+/* Ícones: sempre 20px, sem espaço de linha (tela 3 usa <span data-nav-icon>) */
+.app-bottom-nav [data-nav-icon] {
+    display: flex;
+}
+
+.app-bottom-nav svg {
+    display: block;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+}
+
+/* Rótulos */
+.app-bottom-nav .bottom-nav-label,
+.app-bottom-nav .nav-label {
+    margin: 0;
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Mesmo peso em todos os estados: negrito alargaria o texto e faria a barra "pular".
+   O item ativo se destaca apenas pela cor. */
+.app-bottom-nav .bottom-nav-label--active,
+.app-bottom-nav .nav-label--active {
+    font-weight: 500;
+}

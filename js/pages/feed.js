@@ -18,7 +18,7 @@
             ia: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                 stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
-                <path d="M12 12 2.1 12.1"></path>
+                <path d="M12 12l2.1 12.1"></path>
                 <path d="M12 12l4.3-8.6"></path>
                 <circle cx="12" cy="12" r="3"></circle>
             </svg>`,

@@ -2,6 +2,15 @@
 <html lang="pt-BR" data-nav-side="left">
 <head>
     <meta charset="UTF-8">
+    <!-- Aplica o lado do menu antes da renderização (evita o "pulo" da sidebar) -->
+    <script>
+        try {
+            var s = localStorage.getItem('gruplace:navSide');
+            if (s === 'right' || s === 'left') {
+                document.documentElement.setAttribute('data-nav-side', s);
+            }
+        } catch (e) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>gruplace - ZARA Detalhes</title>
     <!-- Google Fonts: Inter -->
@@ -10,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/shared/base.css">
     <link rel="stylesheet" href="css/pages/store-page.css">
+    <link rel="stylesheet" href="css/shared/bottom-nav.css">
 
 </head>
 <body>
