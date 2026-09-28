@@ -33,4 +33,13 @@
                 ? `Filtros aplicados:\n- ${activeFilters.join('\n- ')}`
                 : "Nenhum filtro selecionado.");
         });
-    
+
+        /* ============================================================
+           5. AÇÃO DO BOTÃO VOLTAR
+           ============================================================ */
+        const backBtn = document.querySelector('.back-button');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                window.location.href = '3-inicio-feed.html';
+            });
+        }
