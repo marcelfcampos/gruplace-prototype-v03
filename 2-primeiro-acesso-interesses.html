@@ -450,66 +450,7 @@
          ============================================================ -->
 
     <script src="js/shared/nav-side.js"></script>
-    <script>
-
-        /* ============================================================
-           2. SELEÇÃO DOS INTERESSES
-           ============================================================ */
-
-        const interestPills =
-            document.querySelectorAll('.interest-pill');
-
-        interestPills.forEach(pill => {
-
-            pill.addEventListener('click', () => {
-
-                pill.classList.toggle('is-selected');
-
-            });
-
-        });
-
-
-        /* ============================================================
-           3. AÇÃO DO BOTÃO VOLTAR
-           ============================================================ */
-
-        document.getElementById('back-btn').addEventListener('click', () => {
-
-            alert('Retornando para a tela anterior...');
-
-        });
-
-
-        /* ============================================================
-           4. AÇÃO DO BOTÃO CONTINUAR
-           ============================================================ */
-
-        document.getElementById('continue-btn').addEventListener('click', () => {
-
-            const selected =
-                document.querySelectorAll('.interest-pill.is-selected');
-
-            const interests =
-                Array.from(selected).map(item => item.textContent.trim());
-
-            if (interests.length === 0) {
-
-                alert(
-                    'Por favor, selecione pelo menos um interesse para continuar.'
-                );
-
-            } else {
-
-                alert(
-                    `Interesses salvos com sucesso: ${interests.join(', ')}!\nAvançando para a próxima etapa...`
-                );
-
-            }
-
-        });
-
-    </script>
+    <script src="js/pages/interests.js"></script>
 
 </body>
 </html>
