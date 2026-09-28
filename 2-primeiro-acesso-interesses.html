@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-nav-side="left">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gruplace - Interesses</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="css/pages/interests.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         SHELL PRINCIPAL RESPONSIVO
+         ============================================================ -->
+    <div class="app-shell">
+
+        <!-- ========== BARRA LATERAL (desktop) / TOPO (mobile) ========== -->
+        <aside class="app-sidebar"
+               aria-label="Navegação principal">
+
+            <!-- Logo / Brand -->
+            <div class="brand">
+                <span class="brand-mark">g</span>
+                <span class="brand-name">gruplace</span>
+            </div>
+
+            <!-- Navegação (visível no desktop) -->
+            <nav class="desktop-navigation">
+                <a href="#" class="navigation-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10.5 12 3l9 7.5"></path>
+                <path d="M5 9.8V21h14V9.8"></path>
+            </svg>
+                    Boas-vindas
+                </a>
+
+                <a href="#" class="navigation-link is-active">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="navigation-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    Interesses
+                </a>
+
+                <a href="#" class="navigation-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round">
+                <circle cx="12" cy="9" r="3.4"></circle>
+                <path d="M5 20c1.4-3.2 4-4.6 7-4.6s5.6 1.4 7 4.6"></path>
+            </svg>
+                    Perfil
+                </a>
+            </nav>
+
+            <!-- Rodapé da sidebar (alternar posição - desktop) -->
+            <div class="navigation-footer">
+                <button id="toggle-nav-side"
+                        class="navigation-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="navigation-toggle-icon"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span id="toggle-nav-label">Menu à direita</span>
+                </button>
+            </div>
+        </aside>
+
+
+        <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+        <main class="app-main">
+
+            <!-- CABEÇALHO: Botão de voltar e Títulos -->
+            <header class="page-header">
+
+                <!-- Botão de Voltar -->
+                <button id="back-btn"
+                        class="back-button"
+                        aria-label="Voltar">
+                    <svg class="back-icon"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         viewBox="0 0 24 24">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+
+                <!-- Título e Subtítulo -->
+                <div class="page-heading">
+                    <h1 class="page-title">
+                        O que desperta<br>sua curiosidade?
+                    </h1>
+
+                    <p class="page-description">
+                        Selecione seus interesses para personalizarmos sua experiência no gruplace.
+                    </p>
+                </div>
+            </header>
+
+
+            <!-- CONTEÚDO CENTRAL: Grid de Tags de Interesses (Selecionáveis) -->
+            <section class="interests-section">
+                <div id="interests-grid" class="interests-grid">
+
+                    <!-- Os itens serão gerados via JS ou HTML estático estruturado -->
+
+                    <button type="button"
+                            data-interest="moda"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H5v10a2 2 0 002 2h10a2 2 0 002-2V10h1.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z" />
+                            </svg>
+                        </span>
+                        Moda
+                    </button>
+
+                    <button type="button"
+                            data-interest="beleza"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                        </span>
+                        Beleza
+                    </button>
+
+                    <button type="button"
+                            data-interest="tecnologia"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+                        Tecnologia
+                    </button>
+
+                    <button type="button"
+                            data-interest="gastronomia"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M18 10h-1.26A8 8 0 109 20h9a1 1 0 001-1v-8a1 1 0 00-1-1z" />
+                            </svg>
+                        </span>
+                        Gastronomia
+                    </button>
+
+                    <button type="button"
+                            data-interest="esportes"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9" />
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 3v18M3 12h18" />
+                            </svg>
+                        </span>
+                        Esportes
+                    </button>
+
+                    <button type="button"
+                            data-interest="casa-decoracao"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </span>
+                        Casa & decoração
+                    </button>
+
+                    <button type="button"
+                            data-interest="games"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M15 5v2m0 4v2m2-3h-4m-3 7.5L5.5 14A5 5 0 0110 7h4a5 5 0 014.5 7l-2.5 3.5a1 1 0 01-.82.42h-3.36a1 1 0 01-.82-.42z" />
+                            </svg>
+                        </span>
+                        Games
+                    </button>
+
+                    <button type="button"
+                            data-interest="entretenimento"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4" />
+                            </svg>
+                        </span>
+                        Entretenimento
+                    </button>
+
+                    <button type="button"
+                            data-interest="infantil"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
+                        Infantil
+                    </button>
+
+                    <button type="button"
+                            data-interest="acessorios"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </span>
+                        Acessórios
+                    </button>
+
+                    <button type="button"
+                            data-interest="calcados"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+                        Calçados
+                    </button>
+
+                    <button type="button"
+                            data-interest="livros-papelaria"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </span>
+                        Livros & papelaria
+                    </button>
+
+                    <button type="button"
+                            data-interest="brinquedos"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 01-.586 1.414l-5 5C10.586 16.914 11 16 11 15V10L8 4z" />
+                            </svg>
+                        </span>
+                        Brinquedos
+                    </button>
+
+                    <button type="button"
+                            data-interest="pet"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                        </span>
+                        Pet
+                    </button>
+
+                    <button type="button"
+                            data-interest="joias-relogios"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
+                        Joias & relógios
+                    </button>
+
+                    <button type="button"
+                            data-interest="viagens-lazer"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
+                        Viagens & lazer
+                    </button>
+
+                    <button type="button"
+                            data-interest="presentes"
+                            class="interest-pill">
+                        <span class="interest-icon-wrapper">
+                            <svg class="interest-icon"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 viewBox="0 0 24 24">
+                                <path stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                      d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </span>
+                        Presentes
+                    </button>
+
+                </div>
+            </section>
+
+
+            <!-- RODAPÉ: Botão Continuar e Nota de Rodapé -->
+            <footer class="page-footer">
+
+                <!-- Botão Continuar -->
+                <button id="continue-btn"
+                        class="continue-button">
+                    Continuar
+                </button>
+
+                <!-- Nota de rodapé -->
+                <div class="footer-note">
+                    <p class="footer-note-text">
+                        Você pode alterar isso depois no seu perfil.
+                    </p>
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+
+    <script src="js/shared/nav-side.js"></script>
+    <script>
+
+        /* ============================================================
+           2. SELEÇÃO DOS INTERESSES
+           ============================================================ */
+
+        const interestPills =
+            document.querySelectorAll('.interest-pill');
+
+        interestPills.forEach(pill => {
+
+            pill.addEventListener('click', () => {
+
+                pill.classList.toggle('is-selected');
+
+            });
+
+        });
+
+
+        /* ============================================================
+           3. AÇÃO DO BOTÃO VOLTAR
+           ============================================================ */
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+
+            alert('Retornando para a tela anterior...');
+
+        });
+
+
+        /* ============================================================
+           4. AÇÃO DO BOTÃO CONTINUAR
+           ============================================================ */
+
+        document.getElementById('continue-btn').addEventListener('click', () => {
+
+            const selected =
+                document.querySelectorAll('.interest-pill.is-selected');
+
+            const interests =
+                Array.from(selected).map(item => item.textContent.trim());
+
+            if (interests.length === 0) {
+
+                alert(
+                    'Por favor, selecione pelo menos um interesse para continuar.'
+                );
+
+            } else {
+
+                alert(
+                    `Interesses salvos com sucesso: ${interests.join(', ')}!\nAvançando para a próxima etapa...`
+                );
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

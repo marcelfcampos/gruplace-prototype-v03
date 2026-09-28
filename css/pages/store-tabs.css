@@ -1,0 +1,817 @@
+
+        /* ============================================================
+           1. VARIÁVEIS
+           ============================================================ */
+        :root {
+            /* Layout */
+            --sidebar-width: 240px;
+            /* barra lateral de navegação (desktop) */
+            --right-width: 280px;
+            /* trilho auxiliar (desktop largo)      */
+            --content-max: 680px;
+            /* largura máxima da coluna de conteúdo */
+            --page-max: 1280px;
+            /* largura máxima do shell              */
+            --gutter: 24px;
+            /* espaçamento entre colunas            */
+            --bottom-nav-h: 64px;
+            /* altura do menu inferior (mobile)     */
+
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+            /* Cores (paleta slate / indigo / sky) */
+            --color-white: #ffffff;
+            --color-white-95: rgba(255, 255, 255, 0.95);
+            --color-white-90: rgba(255, 255, 255, 0.90);
+
+            --color-slate-50: #f8fafc;
+            --color-slate-50-60: rgba(248, 250, 252, 0.6);
+            --color-slate-100: #f1f5f9;
+            --color-slate-200: #e2e8f0;
+            --color-slate-400: #94a3b8;
+            --color-slate-500: #64748b;
+            --color-slate-600: #475569;
+            --color-slate-700: #334155;
+            --color-slate-800: #1e293b;
+            --color-slate-900: #0f172a;
+
+            --color-indigo-50: #eef2ff;
+            --color-indigo-100: #e0e7ff;
+            --color-indigo-950: #1e1b4b;
+
+            --color-sky-50: #f0f9ff;
+            --color-sky-100: #e0f2fe;
+            --color-sky-700: #0369a1;
+
+            /* Tipografia */
+            --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
+            /* Sombras (Tailwind v4) */
+            --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+            /* Arredondamentos */
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+
+            /* Transições */
+            --transition-colors: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+            --transition-all: all 150ms ease;
+        }
+
+        /* ============================================================
+           2. RESET / BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-padding-top: var(--safe-top);
+        }
+
+        body {
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0;
+        }
+
+        ul,
+        ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        svg {
+            display: block;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ============================================================
+           3. LAYOUT — SHELL PRINCIPAL
+           ============================================================ */
+
+        /* MOBILE FIRST (coluna única + menu inferior fixo) */
+        .app-shell {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100dvh;
+        }
+
+        /* >= 1024px  →  GRID DO DESIGN SYSTEM
+           [ sidebar fixa 240px ] + [ conteúdo 1fr ] */
+        @media (min-width: 1024px) {
+            body {
+                padding-left: var(--sidebar-width);
+            }
+
+            [data-nav-side="right"] body {
+                padding-left: 0;
+                padding-right: var(--sidebar-width);
+            }
+
+            .app-sidebar {
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: var(--sidebar-width);
+                height: 100vh;
+                height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                z-index: 40;
+                padding-top: calc(1.25rem + var(--safe-top));
+                padding-bottom: calc(1.25rem + var(--safe-bottom));
+            }
+
+            [data-nav-side="right"] .app-sidebar {
+                left: auto;
+                right: 0;
+                border-right-width: 0;
+                border-left-width: 1px;
+            }
+
+            .app-shell {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+                column-gap: var(--gutter);
+                align-items: start;
+                max-width: calc(var(--page-max) - var(--sidebar-width));
+                margin-inline: auto;
+                padding-inline: var(--gutter);
+                min-height: 100dvh;
+            }
+        }
+
+        /* >= 1280px  →  conteúdo + trilho auxiliar 280px */
+        @media (min-width: 1280px) {
+            .app-shell {
+                grid-template-columns: minmax(0, 1fr) var(--right-width);
+            }
+
+            [data-nav-side="right"] .app-shell {
+                grid-template-columns: var(--right-width) minmax(0, 1fr);
+            }
+
+            [data-nav-side="right"] .app-rail {
+                order: 1;
+            }
+
+            [data-nav-side="right"] .app-main {
+                order: 2;
+            }
+
+            .app-rail {
+                position: sticky;
+                top: 0;
+                max-height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                padding-bottom: var(--safe-bottom);
+            }
+        }
+
+        /* ============================================================
+           4. SIDEBAR (desktop)
+           ============================================================ */
+        .app-sidebar {
+            display: none;
+            background-color: var(--color-white);
+            border-right: 1px solid var(--color-slate-200);
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        @media (min-width: 1024px) {
+            .app-sidebar {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            margin-bottom: 2rem;
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+
+        .sidebar-brand-logo {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-indigo-950);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .sidebar-brand-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+            letter-spacing: -0.025em;
+            text-transform: lowercase;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-slate-100);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .sidebar-toggle-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-xl);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-slate-500);
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-toggle-btn:hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-800);
+        }
+
+        .sidebar-toggle-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* ============================================================
+           5. NAVEGAÇÃO (sidebar links + tabs + bottom nav)
+           ============================================================ */
+
+        /* --- Navegação lateral (desktop) --- */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 0.75rem;
+            border-radius: var(--radius-xl);
+            color: var(--color-slate-600);
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-nav-link:hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-900);
+        }
+
+        .sidebar-nav-link--active {
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            font-weight: 600;
+        }
+
+        .sidebar-nav-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        /* --- Abas de navegação da loja (tabs) --- */
+        .tabs-nav {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-top: 2rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.375rem 1rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-slate-600);
+            background-color: var(--color-slate-100);
+            flex-shrink: 0;
+            transition: var(--transition-all);
+        }
+
+        .tab-btn:hover {
+            background-color: var(--color-slate-200);
+        }
+
+        .tab-btn--active {
+            font-weight: 600;
+            background-color: var(--color-indigo-950);
+            color: var(--color-white);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .tab-btn--active:hover {
+            background-color: var(--color-indigo-950);
+        }
+
+        /* --- Menu de navegação inferior (mobile) --- */
+        .app-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-white-90);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--color-slate-100);
+            padding: 0.5rem 1rem;
+            padding-bottom: calc(0.5rem + var(--safe-bottom));
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 30;
+            box-shadow: var(--shadow-lg);
+        }
+
+        @media (min-width: 1024px) {
+            .app-bottom-nav {
+                display: none !important;
+            }
+        }
+
+        .bottom-nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--color-slate-400);
+            transition: var(--transition-colors);
+        }
+
+        .bottom-nav-link:hover {
+            color: var(--color-slate-800);
+        }
+
+        .bottom-nav-link--active {
+            color: var(--color-slate-900);
+        }
+
+        .bottom-nav-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .bottom-nav-label {
+            font-size: 10px;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .bottom-nav-label--active {
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           6. CONTEÚDO PRINCIPAL
+           ============================================================ */
+        .app-main {
+            width: 100%;
+            max-width: 28rem;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: var(--color-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .app-main {
+                max-width: var(--content-max);
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 0;
+                margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+                border-radius: var(--radius-2xl);
+                box-shadow: var(--shadow-sm);
+                border: 1px solid var(--color-slate-200);
+            }
+        }
+
+        /* --- Cabeçalho da loja --- */
+        .store-header {
+            padding: 1rem 1.25rem 0.5rem;
+            border-bottom: 1px solid var(--color-slate-100);
+            position: sticky;
+            top: 0;
+            background-color: var(--color-white-95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 20;
+        }
+
+        .store-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .store-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .back-btn {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-slate-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-slate-700);
+            transition: var(--transition-colors);
+        }
+
+        .back-btn:hover {
+            background-color: var(--color-slate-200);
+        }
+
+        .back-btn-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .store-info {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .store-avatar {
+            width: 2.8rem;
+            height: 2.8rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-slate-900);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 0.75rem;
+            overflow: hidden;
+        }
+
+        .store-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .store-name {
+            /* font-size: 0.75rem; */
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-slate-900);
+            line-height: 1.25;
+        }
+
+        .store-category {
+            font-size: 11px;
+            color: var(--color-slate-500);
+        }
+
+        .store-location {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 12px;
+            color: var(--color-slate-500);
+            font-weight: 500;
+            margin-top: 0.4rem;
+            /* margin-top: 0.125rem; */
+        }
+
+        .store-location-icon {
+            width: 0.875rem;
+            height: 0.875rem;
+            color: var(--color-slate-400);
+            flex-shrink: 0;
+        }
+
+        /* --- Conteúdo das abas --- */
+        .tab-content {
+            padding: 1rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            flex: 1;
+        }
+
+        /* --- Trilho auxiliar (desktop largo) --- */
+        .app-rail {
+            display: none;
+            width: 100%;
+        }
+
+        @media (min-width: 1280px) {
+            .app-rail {
+                display: block;
+            }
+        }
+
+        .rail-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rail-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-slate-200);
+            border-radius: var(--radius-2xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rail-card-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-slate-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .rail-card-text {
+            font-size: 0.75rem;
+            color: var(--color-slate-500);
+        }
+
+        /* ============================================================
+           7. SEÇÕES DE CONTEÚDO / FILTROS
+           ============================================================ */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .section-link {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-slate-400);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: var(--transition-colors);
+        }
+
+        .section-link:hover {
+            color: var(--color-slate-700);
+        }
+
+        .section-link-arrow {
+            font-size: 10px;
+        }
+
+        /* ============================================================
+           8. CARDS
+           ============================================================ */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .product-card {
+            background-color: var(--color-slate-50-60);
+            border: 1px solid var(--color-slate-100);
+            border-radius: var(--radius-2xl);
+            padding: 0.625rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            height: 9rem;
+            width: 100%;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background-color: var(--color-slate-200);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-slate-900);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-slate-900);
+            margin-top: 0.25rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            font-size: 10px;
+            padding: 0.125rem 0.5rem;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .badge--new {
+            background-color: var(--color-white-90);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: var(--color-slate-800);
+            font-weight: 600;
+        }
+
+        .badge--discount {
+            background-color: var(--color-sky-50);
+            color: var(--color-sky-700);
+            border: 1px solid var(--color-sky-100);
+            font-weight: 700;
+        }
+
+        /* --- Cartão de cupom --- */
+        .coupon-card {
+            background-color: var(--color-slate-50-60);
+            border: 1px solid var(--color-slate-100);
+            border-radius: var(--radius-2xl);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .coupon-brand {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            color: var(--color-slate-900);
+        }
+
+        .coupon-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-slate-900);
+            margin-top: 0.25rem;
+            letter-spacing: -0.025em;
+        }
+
+        .coupon-desc {
+            font-size: 11px;
+            color: var(--color-slate-500);
+            margin-top: 0.125rem;
+        }
+
+        /* ============================================================
+           9. BOTÕES
+           ============================================================ */
+        .coupon-btn {
+            background-color: var(--color-indigo-50);
+            border: 1px solid var(--color-indigo-100);
+            color: var(--color-indigo-950);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-xs);
+            transition: var(--transition-colors);
+        }
+
+        .coupon-btn:hover {
+            background-color: var(--color-indigo-100);
+        }
+
+        /* ============================================================
+           10. ESTADOS E TRANSIÇÕES
+           ============================================================ */
+        .sidebar-nav-link,
+        .sidebar-toggle-btn,
+        .back-btn,
+        .bottom-nav-link,
+        .coupon-btn {
+            transition: var(--transition-colors);
+        }
+
+        .tab-btn {
+            transition: var(--transition-all);
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--color-indigo-950);
+            outline-offset: 2px;
+        }
+
+        /* ============================================================
+           11. RESPONSIVIDADE (regras adicionais específicas)
+           ============================================================ */
+        @media (min-width: 1024px) {
+            /* já cobertas nas seções 3–6 acima (sidebar, app-main, bottom-nav) */
+        }
+    

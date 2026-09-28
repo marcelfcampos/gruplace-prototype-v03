@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-nav-side="left">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>gruplace - Favoritos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+    <link rel="stylesheet" href="css/pages/favorites.css">
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- ========== BARRA LATERAL (desktop) ========== -->
+    <aside class="app-sidebar" aria-label="Navegação principal">
+
+      <!-- Marca -->
+      <div class="sidebar-brand">
+        <span class="brand-logo">gp</span>
+        <span class="brand-name">gruplace</span>
+      </div>
+
+      <!-- Navegação -->
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10.5 12 3l9 7.5"></path>
+            <path d="M5 9.8V21h14V9.8"></path>
+          </svg>
+          Início
+        </a>
+        <a href="#" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l1.5-5h15L21 9"></path>
+            <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+            <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+            <path d="M3 9h18"></path>
+          </svg>
+          Lojas
+        </a>
+        <a href="#" class="sidebar-link sidebar-link--active" aria-current="page">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="20" height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+          Favoritos
+        </a>
+        <a href="#" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+            <path d="M12 12l2.1 12.1"></path>
+            <path d="M12 12l4.3-8.6"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          IA
+        </a>
+        <a href="#" class="sidebar-link">
+          <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+          </svg>
+          Perfil
+        </a>
+      </nav>
+
+      <!-- Rodapé da sidebar (alternar posição) -->
+      <div class="sidebar-footer">
+        <button id="toggle-nav-side" type="button" class="sidebar-toggle-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-toggle-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <span id="toggle-nav-label">Menu à direita</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ========== COLUNA PRINCIPAL (Favoritos) ========== -->
+    <main class="app-main">
+
+      <header class="page-header">
+        <h1 class="page-title">Favoritos</h1>
+      </header>
+
+      <!-- Busca e filtros -->
+      <div class="search-filter-row">
+
+        <div class="search-container">
+          <span class="search-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+          </span>
+
+          <input
+            id="favorites-search-input"
+            class="search-input"
+            type="search"
+            placeholder="Buscar nos favoritos"
+            autocomplete="off"
+          >
+        </div>
+
+        <button type="button" class="filter-button" aria-label="Filtros">
+          <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16"></path>
+            <path d="M7 12h10"></path>
+            <path d="M10 18h4"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Categorias -->
+      <div class="category-filters no-scrollbar">
+        <button type="button" class="category-filter-button category-filter-button--active" data-category="todos">
+          Todos
+        </button>
+        <button type="button" class="category-filter-button category-filter-button--inactive" data-category="moda">
+          Moda
+        </button>
+        <button type="button" class="category-filter-button category-filter-button--inactive" data-category="beleza">
+          Beleza
+        </button>
+        <button type="button" class="category-filter-button category-filter-button--inactive" data-category="tecnologia">
+          Tecnologia
+        </button>
+        <button type="button" class="category-filter-button category-filter-button--inactive" data-category="gastronomia">
+          Gastronomia
+        </button>
+      </div>
+
+      <!-- Produtos -->
+      <div id="products-grid-container" class="favorites-grid">
+
+        <!-- Produto 1 -->
+        <article class="product-card" data-category="moda" data-name="tênis air force 1 nike">
+          <button type="button" class="favorite-toggle-button" aria-label="Favorito">
+            <svg class="favorite-toggle-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 8.6c0 5.5-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.8 2.3Z"></path>
+            </svg>
+          </button>
+
+          <div class="product-image-container">
+            <img class="product-image" src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=60" alt="Tênis Air Force 1">
+          </div>
+
+          <div class="product-brand-row">
+            <span class="product-brand">Nike</span>
+            <button type="button" class="store-follow-button">Seguir</button>
+          </div>
+
+          <h3 class="product-title">Tênis Air Force 1</h3>
+
+          <div class="product-price-row">
+            <span class="product-price">R$ 799,90</span>
+            <span class="product-discount">20% OFF</span>
+          </div>
+
+          <button type="button" class="store-link-button">
+            Ver na loja
+            <svg class="store-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </button>
+        </article>
+
+        <!-- Produto 2 -->
+        <article class="product-card" data-category="beleza" data-name="kit skincare sephora">
+          <button type="button" class="favorite-toggle-button" aria-label="Favorito">
+            <svg class="favorite-toggle-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 8.6c0 5.5-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.8 2.3Z"></path>
+            </svg>
+          </button>
+
+          <div class="product-image-container">
+            <img class="product-image" src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&auto=format&fit=crop&q=60" alt="Kit skincare">
+          </div>
+
+          <div class="product-brand-row">
+            <span class="product-brand">Sephora</span>
+            <button type="button" class="store-follow-button">Seguir</button>
+          </div>
+
+          <h3 class="product-title">Kit skincare</h3>
+
+          <div class="product-price-row">
+            <span class="product-price">R$ 249,90</span>
+            <span class="product-discount">15% OFF</span>
+          </div>
+
+          <button type="button" class="store-link-button">
+            Ver na loja
+            <svg class="store-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </button>
+        </article>
+
+        <!-- Produto 3 -->
+        <article class="product-card" data-category="moda" data-name="bolsa transversal zara">
+          <button type="button" class="favorite-toggle-button" aria-label="Favorito">
+            <svg class="favorite-toggle-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 8.6c0 5.5-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.8 2.3Z"></path>
+            </svg>
+          </button>
+
+          <div class="product-image-container">
+            <img class="product-image" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&auto=format&fit=crop&q=60" alt="Bolsa transversal">
+          </div>
+
+          <div class="product-brand-row">
+            <span class="product-brand">Zara</span>
+            <button type="button" class="store-follow-button">Seguir</button>
+          </div>
+
+          <h3 class="product-title">Bolsa transversal</h3>
+
+          <div class="product-price-row">
+            <span class="product-price">R$ 299,90</span>
+          </div>
+
+          <button type="button" class="store-link-button">
+            Ver na loja
+            <svg class="store-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </button>
+        </article>
+
+        <!-- Produto 4 -->
+        <article class="product-card" data-category="tecnologia" data-name="fone de ouvido jbl">
+          <button type="button" class="favorite-toggle-button" aria-label="Favorito">
+            <svg class="favorite-toggle-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.8 8.6c0 5.5-8.8 10.4-8.8 10.4S3.2 14.1 3.2 8.6A4.6 4.6 0 0 1 12 6.3a4.6 4.6 0 0 1 8.8 2.3Z"></path>
+            </svg>
+          </button>
+
+          <div class="product-image-container">
+            <img class="product-image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&auto=format&fit=crop&q=60" alt="Fone de ouvido">
+          </div>
+
+          <div class="product-brand-row">
+            <span class="product-brand">JBL</span>
+            <button type="button" class="store-follow-button">Seguir</button>
+          </div>
+
+          <h3 class="product-title">Fone de ouvido</h3>
+
+          <div class="product-price-row">
+            <span class="product-price">R$ 499,90</span>
+          </div>
+
+          <button type="button" class="store-link-button">
+            Ver na loja
+            <svg class="store-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7"></path>
+              <path d="M7 7h10v10"></path>
+            </svg>
+          </button>
+        </article>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========== MENU DE NAVEGAÇÃO INFERIOR (mobile) ========== -->
+  <nav class="app-bottom-nav" aria-label="Navegação principal">
+    <a href="#" class="nav-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 10.5 12 3l9 7.5"></path>
+        <path d="M5 9.8V21h14V9.8"></path>
+      </svg>
+      <span class="nav-label">Início</span>
+    </a>
+    <a href="#" class="nav-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 9l1.5-5h15L21 9"></path>
+        <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+        <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+        <path d="M3 9h18"></path>
+      </svg>
+      <span class="nav-label">Lojas</span>
+    </a>
+    <a href="#" class="nav-item nav-item--active" aria-current="page">
+      <svg class="nav-icon-lg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+      </svg>
+      <span class="nav-label nav-label--active">Favoritos</span>
+    </a>
+    <a href="#" class="nav-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+        <path d="M12 12l2.1 12.1"></path>
+        <path d="M12 12l4.3-8.6"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <span class="nav-label">IA</span>
+    </a>
+    <a href="#" class="nav-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path>
+      </svg>
+      <span class="nav-label">Perfil</span>
+    </a>
+  </nav>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+    <script src="js/shared/nav-side.js"></script>
+    <script src="js/pages/favorites.js"></script>
+</body>
+</html>

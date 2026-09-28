@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-nav-side="left">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gruplace - Home</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/pages/feed.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         SHELL PRINCIPAL RESPONSIVO
+         ============================================================ -->
+    <div class="app-shell">
+
+        <!-- ========== BARRA LATERAL (desktop) ========== -->
+        <aside class="app-sidebar" aria-label="Navegação principal">
+
+            <!-- Marca -->
+            <div class="sidebar-brand">
+                <span class="brand-icon">G</span>
+                <span class="brand-text">Gruplace</span>
+            </div>
+
+            <!-- Navegação -->
+            <nav class="sidebar-nav">
+                <a href="#" aria-current="page" class="nav-link nav-link-active">
+                    <span data-nav-icon="inicio" aria-hidden="true"></span>
+                    Início
+                </a>
+                <a href="#" class="nav-link">
+                    <span data-nav-icon="lojas" aria-hidden="true"></span>
+                    Lojas
+                </a>
+                <a href="#" class="nav-link">
+                    <span data-nav-icon="favoritos" aria-hidden="true"></span>
+                    Favoritos
+                </a>
+                <a href="#" class="nav-link">
+                    <span data-nav-icon="ia" aria-hidden="true"></span>
+                    IA
+                </a>
+                <a href="11-perfil.html" class="nav-link">
+                    <span data-nav-icon="perfil" aria-hidden="true"></span>
+                    Perfil
+                </a>
+            </nav>
+
+            <!-- Rodapé da sidebar -->
+            <div class="sidebar-footer">
+                <button id="toggle-nav-side" class="toggle-nav-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span id="toggle-nav-label">Menu à direita</span>
+                </button>
+
+                <div class="sidebar-profile">
+                    <span class="sidebar-avatar">G</span>
+                    <span class="profile-info">
+                        <span class="profile-name">Giovanna</span>
+                        <span class="profile-role">Ver perfil</span>
+                    </span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== COLUNA PRINCIPAL ========== -->
+        <main class="app-main">
+
+            <!-- ---------- HEADER ---------- -->
+            <header class="main-header">
+                <!-- Saudação e perfil -->
+                <div class="header-top">
+                    <div class="greeting-info">
+                        <h1 class="greeting-title">
+                            Olá, Giovanna <span class="greeting-emoji">👋</span>
+                        </h1>
+                        <p class="greeting-subtitle">Descubra o que combina com você.</p>
+                    </div>
+                    <!-- Avatar (escondido no desktop, já existe na sidebar) -->
+                    <div class="header-avatar">
+                        G
+                    </div>
+                </div>
+
+                <!-- Barra de busca e Filtro Separados -->
+                <div class="search-row">
+                    <div class="search-input-wrapper">
+                        <span class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </span>
+                        <input type="text" placeholder="Buscar no Gruplace..." class="search-input">
+                    </div>
+                    <button class="filter-button" aria-label="Filtros de busca">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 6h16"></path>
+                            <path d="M7 12h10"></path>
+                            <path d="M10 18h4"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ---------- CONTEÚDO ---------- -->
+            <div class="main-content">
+
+                <!-- Destaques patrocinados -->
+                <section>
+                    <h2 class="section-heading">Destaques patrocinados</h2>
+                    <div class="sponsored-banner">
+                        <div class="banner-image"></div>
+                        <div class="banner-overlay"></div>
+
+                        <span class="sponsored-badge">
+                            Patrocinado
+                        </span>
+
+                        <div class="banner-content">
+                            <h3 class="banner-title">ZARA</h3>
+                            <p class="banner-subtitle">Nova coleção</p>
+                            <a href="#" class="banner-link">
+                                Descubra agora &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Abas de filtro -->
+                <div class="filter-tabs no-scrollbar">
+                    <button class="tab-button tab-button-active">Para você</button>
+                    <button class="tab-button">Ofertas</button>
+                    <button class="tab-button">Novidades</button>
+                    <button class="tab-button">Cupons</button>
+                    <button class="tab-button tab-button-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-sm" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 6h16"></path>
+                            <path d="M7 12h10"></path>
+                            <path d="M10 18h4"></path>
+                        </svg>
+                        Filtros
+                    </button>
+                </div>
+
+                <!-- Grid de produtos: 2 col (mobile) → 3 col (desktop) -->
+                <div class="product-grid">
+
+                    <!-- Card 1: Nike -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=60"
+                                    alt="Tênis Air Force 1" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Nike</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Tênis Air Force 1</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 799,90</span>
+                                <span class="product-discount">20% OFF</span>
+                            </div>
+
+                            <span class="product-badge">Novo lançamento</span>
+                        </div>
+
+                        <button class="view-store-button">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                    <!-- Card 2: Sephora -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&auto=format&fit=crop&q=60"
+                                    alt="Kit skincare" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Sephora</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Kit skincare</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 249,90</span>
+                                <span class="product-discount">15% OFF</span>
+                            </div>
+                        </div>
+
+                        <button class="view-store-button view-store-button-spaced">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                    <!-- Card 3: Zara -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&auto=format&fit=crop&q=60"
+                                    alt="Jaqueta jeans" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Zara</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Jaqueta jeans oversized</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 329,00</span>
+                                <span class="product-discount">10% OFF</span>
+                            </div>
+                        </div>
+
+                        <button class="view-store-button view-store-button-spaced">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                    <!-- Card 4: Adidas -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=400&auto=format&fit=crop&q=60"
+                                    alt="Tênis esportivo" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Adidas</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Ultraboost Light</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 899,90</span>
+                                <span class="product-discount">25% OFF</span>
+                            </div>
+                        </div>
+
+                        <button class="view-store-button view-store-button-spaced">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                    <!-- Card 5: Renner -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&auto=format&fit=crop&q=60"
+                                    alt="Camiseta básica" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Renner</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Camiseta algodão pima</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 89,90</span>
+                                <span class="product-discount">30% OFF</span>
+                            </div>
+                        </div>
+
+                        <button class="view-store-button view-store-button-spaced">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                    <!-- Card 6: Natura -->
+                    <article class="product-card">
+                        <button class="favorite-button" aria-label="Favoritar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="favorite-icon favorite-icon-filled"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                        </button>
+
+                        <div>
+                            <div class="product-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=400&auto=format&fit=crop&q=60"
+                                    alt="Perfume" loading="lazy" class="product-image">
+                            </div>
+
+                            <div class="product-header-row">
+                                <span class="product-brand truncate-text">Natura</span>
+                                <button class="follow-button">
+                                    + Seguir
+                                </button>
+                            </div>
+
+                            <h4 class="product-title">Perfume Essencial</h4>
+
+                            <div class="product-price-wrapper">
+                                <span class="product-price">R$ 179,90</span>
+                                <span class="product-discount">12% OFF</span>
+                            </div>
+                        </div>
+
+                        <button class="view-store-button view-store-button-spaced">
+                            Ver na loja &rarr;
+                        </button>
+                    </article>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- ========== TRILHO AUXILIAR ==========
+             < 1280px: seção no fim do feed
+             >= 1280px: coluna lateral sticky
+             ========================================= -->
+        <aside class="app-rail" aria-label="Conteúdo complementar">
+            <div class="rail-content">
+                <section class="rail-card">
+                    <h2 class="rail-section-title">Lojas para seguir</h2>
+                    <ul class="store-list">
+                        <li class="store-list-item">
+                            <span class="store-info">
+                                <span class="store-avatar">Z</span>
+                                <span class="store-text">
+                                    <span class="store-name truncate-text">Zara</span>
+                                    <span class="store-category">Moda</span>
+                                </span>
+                            </span>
+                            <button class="follow-button-rail">+ Seguir</button>
+                        </li>
+                        <li class="store-list-item">
+                            <span class="store-info">
+                                <span class="store-avatar">N</span>
+                                <span class="store-text">
+                                    <span class="store-name truncate-text">Nike</span>
+                                    <span class="store-category">Esportes</span>
+                                </span>
+                            </span>
+                            <button class="follow-button-rail">+ Seguir</button>
+                        </li>
+                        <li class="store-list-item">
+                            <span class="store-info">
+                                <span class="store-avatar">S</span>
+                                <span class="store-text">
+                                    <span class="store-name truncate-text">Sephora</span>
+                                    <span class="store-category">Beleza</span>
+                                </span>
+                            </span>
+                            <button class="follow-button-rail">+ Seguir</button>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="coupon-card">
+                    <h2 class="coupon-title">Cupom do dia</h2>
+                    <p class="coupon-heading">15% OFF na primeira compra</p>
+                    <p class="coupon-description">Válido para lojas participantes até domingo.</p>
+                    <button class="coupon-button">Resgatar cupom</button>
+                </section>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- ============================================================
+         MENU INFERIOR (apenas < 1024px)
+         ============================================================ -->
+    <nav class="app-bottom-nav" aria-label="Navegação principal">
+        <a href="#" aria-current="page" class="bottom-nav-link bottom-nav-link-active">
+            <span data-nav-icon="inicio" aria-hidden="true"></span>
+            <span class="bottom-nav-label">Início teste</span>
+        </a>
+        <a href="#" class="bottom-nav-link">
+            <span data-nav-icon="lojas" aria-hidden="true"></span>
+            <span class="bottom-nav-label">Lojas</span>
+        </a>
+        <a href="#" class="bottom-nav-link">
+            <span data-nav-icon="favoritos" aria-hidden="true"></span>
+            <span class="bottom-nav-label">Favoritos</span>
+        </a>
+        <a href="#" class="bottom-nav-link">
+            <span data-nav-icon="ia" aria-hidden="true"></span>
+            <span class="bottom-nav-label">IA</span>
+        </a>
+        <a href="#" class="bottom-nav-link">
+            <span data-nav-icon="perfil" aria-hidden="true"></span>
+            <span class="bottom-nav-label">Perfil</span>
+        </a>
+    </nav>
+
+    <script src="js/shared/nav-side.js"></script>
+    <script src="js/pages/feed.js"></script>
+</body>
+
+</html>

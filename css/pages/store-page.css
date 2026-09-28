@@ -1,0 +1,731 @@
+
+        /* ============================================================
+           GRUPLACE — FOLHA DE ESTILOS (ZARA Detalhes)
+           ============================================================
+           1. Variáveis
+           2. Reset / Base
+           3. Layout
+           4. Sidebar
+           5. Navegação
+           6. Conteúdo principal
+           7. Busca e filtros
+           8. Cards
+           9. Botões
+           10. Estados e transições
+           11. Responsividade
+           ============================================================ */
+
+        /* ------------------------------------------------------------
+           1. VARIÁVEIS
+           ------------------------------------------------------------ */
+        :root {
+            /* Layout */
+            --sidebar-width: 240px;   /* barra lateral de navegação (desktop) */
+            --right-width: 280px;     /* trilho auxiliar (desktop largo)      */
+            --content-max: 680px;     /* largura máxima da coluna de conteúdo */
+            --page-max: 1280px;       /* largura máxima do shell              */
+            --gutter: 24px;           /* espaçamento entre colunas            */
+            --bottom-nav-h: 64px;     /* altura do menu inferior (mobile)     */
+
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+            /* Cores */
+            --color-white: #ffffff;
+            --color-white-10: rgba(255, 255, 255, 0.1);
+            --color-white-90: rgba(255, 255, 255, 0.9);
+            --color-black-30: rgba(0, 0, 0, 0.3);
+            --color-black-40: rgba(0, 0, 0, 0.4);
+            --color-black-50: rgba(0, 0, 0, 0.5);
+            --color-slate-50: #f8fafc;
+            --color-slate-100: #f1f5f9;
+            --color-slate-200: #e2e8f0;
+            --color-slate-300: #cbd5e1;
+            --color-slate-400: #94a3b8;
+            --color-slate-500: #64748b;
+            --color-slate-600: #475569;
+            --color-slate-700: #334155;
+            --color-slate-700-80: rgba(51, 65, 85, 0.8);
+            --color-slate-800: #1e293b;
+            --color-slate-900: #0f172a;
+            --color-indigo-950: #1e1b4b;
+
+            /* Tipografia */
+            --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+
+            --text-2xs: 0.625rem;   /* 10px */
+            --text-xxs: 0.6875rem;  /* 11px */
+            --text-xs: 0.75rem;     /* 12px */
+            --text-sm: 0.875rem;    /* 14px */
+            --text-base: 1rem;      /* 16px */
+            --text-lg: 1.125rem;    /* 18px */
+            --text-xl: 1.25rem;     /* 20px */
+
+            --tracking-tight: -0.025em;
+            --tracking-widest: 0.1em;
+            --leading-relaxed: 1.625;
+
+            /* Bordas / raios */
+            --radius-md: 0.375rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+
+            /* Sombras */
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+            /* Transições */
+            --transition-colors: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+            --transition-all: all 150ms ease;
+        }
+
+        /* ------------------------------------------------------------
+           2. RESET / BASE
+           ------------------------------------------------------------ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: var(--safe-top);
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        h1, h2, h3, p {
+            margin: 0;
+        }
+
+        button {
+            font-family: inherit;
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img, svg {
+            display: block;
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Espaçamento vertical entre filhos (equivalente a space-y-*) */
+        .stack-4 > * + * { margin-top: 1rem; }
+        .stack-5 > * + * { margin-top: 1.25rem; }
+        .stack-6 > * + * { margin-top: 1.5rem; }
+
+        /* ------------------------------------------------------------
+           3. LAYOUT (shell responsivo)
+           ------------------------------------------------------------ */
+        .app-shell {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100dvh;
+        }
+
+        /* ------------------------------------------------------------
+           4. SIDEBAR
+           ------------------------------------------------------------ */
+        .app-sidebar {
+            display: none;
+            flex-direction: column;
+            background-color: var(--color-white);
+            border-right: 1px solid var(--color-slate-200);
+            padding-inline: 1.25rem;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            margin-bottom: 2rem;
+            padding-inline: 0.25rem;
+        }
+
+        .brand-logo {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.5rem;
+            background-color: var(--color-indigo-950);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--text-sm);
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: var(--text-lg);
+            letter-spacing: var(--tracking-tight);
+            text-transform: lowercase;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-slate-100);
+        }
+
+        /* ------------------------------------------------------------
+           5. NAVEGAÇÃO
+           ------------------------------------------------------------ */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-inline: 0.75rem;
+            padding-block: 0.625rem;
+            border-radius: 0.75rem;
+            color: var(--color-slate-600);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-link:not(.sidebar-link--active):hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-900);
+        }
+
+        .sidebar-link--active {
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            font-weight: 600;
+        }
+
+        .sidebar-link-icon {
+            height: 1.25rem;
+            width: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .app-bottom-nav {
+            padding-bottom: calc(0.5rem + var(--safe-bottom));
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-white-90);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--color-slate-100);
+            padding-inline: 1rem;
+            padding-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 30;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--color-slate-400);
+            transition: var(--transition-colors);
+        }
+
+        .nav-item:not(.nav-item--active):hover {
+            color: var(--color-slate-800);
+        }
+
+        .nav-item--active {
+            color: var(--color-slate-900);
+        }
+
+        .nav-icon-lg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .nav-label {
+            font-size: var(--text-2xs);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .nav-label--active {
+            font-weight: 700;
+        }
+
+        /* ------------------------------------------------------------
+           6. CONTEÚDO PRINCIPAL
+           ------------------------------------------------------------ */
+        .app-main {
+            width: 100%;
+            max-width: 28rem;
+            margin-inline: auto;
+            background-color: var(--color-white);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+            padding-bottom: 2rem;
+        }
+
+        .store-cover {
+            position: relative;
+            width: 100%;
+            height: 12rem;
+            background-color: var(--color-slate-900);
+        }
+
+        .store-cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .store-cover-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, var(--color-black-40), transparent, var(--color-white-10));
+        }
+
+        .store-content {
+            padding-inline: 1.25rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            flex: 1 1 0%;
+        }
+
+        .store-profile-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .store-avatar {
+            width: 6rem;
+            height: 6rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-white);
+            border: 4px solid var(--color-white);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .store-avatar-text {
+            font-family: var(--font-serif);
+            letter-spacing: var(--tracking-widest);
+            font-weight: 700;
+            font-size: var(--text-xl);
+            color: var(--color-slate-900);
+        }
+
+        .store-title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--color-slate-900);
+            letter-spacing: var(--tracking-tight);
+        }
+
+        .store-subtitle {
+            font-size: var(--text-xs);
+            color: var(--color-slate-500);
+            margin-top: 0.125rem;
+        }
+
+        .store-location {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: var(--text-xs);
+            color: var(--color-slate-500);
+            margin-top: 0.375rem;
+            font-weight: 500;
+        }
+
+        .store-location-icon {
+            height: 1rem;
+            width: 1rem;
+            color: var(--color-slate-400);
+        }
+
+        .store-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-block: 0.25rem;
+            border-bottom: 1px solid var(--color-slate-100);
+        }
+
+        .section-title {
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .store-highlights-title {
+            margin-bottom: 0.75rem;
+        }
+
+        .store-about-title {
+            margin-bottom: 0.5rem;
+        }
+
+        .store-about-text {
+            font-size: var(--text-xs);
+            color: var(--color-slate-600);
+            line-height: var(--leading-relaxed);
+        }
+
+        .tab-empty-state {
+            padding-block: 3rem;
+            text-align: center;
+            color: var(--color-slate-400);
+        }
+
+        .tab-empty-state-text {
+            font-size: var(--text-xs);
+            font-weight: 500;
+        }
+
+        .app-rail {
+            display: none;
+            width: 100%;
+        }
+
+        .rail-content {
+            margin-block: 1.5rem;
+        }
+
+        .rail-panel {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-slate-200);
+            border-radius: var(--radius-2xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rail-panel-title {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-slate-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .rail-panel-text {
+            font-size: var(--text-xs);
+            color: var(--color-slate-500);
+        }
+
+        /* ------------------------------------------------------------
+           7. BUSCA E FILTROS
+           ------------------------------------------------------------
+           Esta página não possui campo de busca; a seção é mantida por
+           consistência com o restante do design system do gruplace.
+           ------------------------------------------------------------ */
+
+        /* ------------------------------------------------------------
+           8. CARDS
+           ------------------------------------------------------------ */
+        .highlight-card {
+            background-color: var(--color-slate-50);
+            border: 1px solid var(--color-slate-100);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xs);
+        }
+
+        .highlight-card-media {
+            position: relative;
+            height: 11rem;
+            width: 100%;
+            background-color: var(--color-slate-200);
+        }
+
+        .highlight-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .highlight-card-badge {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background-color: var(--color-white-90);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: var(--color-slate-800);
+            font-size: var(--text-2xs);
+            font-weight: 600;
+            padding-inline: 0.625rem;
+            padding-block: 0.25rem;
+            border-radius: var(--radius-full);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .highlight-card-body {
+            padding: 0.875rem;
+            background-color: var(--color-white);
+        }
+
+        .highlight-card-title {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .highlight-card-text {
+            font-size: var(--text-xxs);
+            color: var(--color-slate-500);
+            margin-top: 0.125rem;
+        }
+
+        .carousel-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+            margin-top: 0.75rem;
+        }
+
+        .carousel-dot {
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-slate-300);
+        }
+
+        .carousel-dot--active {
+            width: 0.75rem;
+            height: 0.375rem;
+            background-color: var(--color-indigo-950);
+        }
+
+        /* ------------------------------------------------------------
+           9. BOTÕES
+           ------------------------------------------------------------ */
+        .sidebar-toggle-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding-inline: 0.75rem;
+            padding-block: 0.5rem;
+            border-radius: 0.75rem;
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--color-slate-500);
+            cursor: pointer;
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-toggle-btn:hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-800);
+        }
+
+        .sidebar-toggle-icon {
+            height: 1rem;
+            width: 1rem;
+        }
+
+        .store-back-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-black-30);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: var(--transition-colors);
+        }
+
+        .store-back-btn:hover {
+            background-color: var(--color-black-50);
+        }
+
+        .store-back-icon {
+            height: 1.25rem;
+            width: 1.25rem;
+        }
+
+        .store-follow-btn {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-white);
+            background-color: var(--color-slate-700-80);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding-inline: 1.25rem;
+            padding-block: 0.5rem;
+            border-radius: var(--radius-full);
+            transition: var(--transition-all);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .store-follow-btn--following {
+            background-color: var(--color-indigo-950);
+        }
+
+        .store-follow-btn:hover,
+        .store-follow-btn.store-follow-btn--following:hover {
+            background-color: var(--color-slate-800);
+        }
+
+        .tab-btn {
+            padding-inline: 1rem;
+            padding-block: 0.5rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--color-slate-600);
+            background-color: var(--color-slate-100);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: var(--transition-all);
+        }
+
+        .tab-btn--hoverable:hover {
+            background-color: var(--color-slate-200);
+        }
+
+        .tab-btn--active {
+            font-weight: 600;
+            color: var(--color-white);
+            background-color: var(--color-indigo-950);
+            box-shadow: var(--shadow-xs);
+        }
+
+        /* ------------------------------------------------------------
+           10. ESTADOS E TRANSIÇÕES
+           ------------------------------------------------------------
+           As transições e estados de hover/focus/active já estão
+           definidos junto de cada componente nas seções acima
+           (Sidebar, Navegação, Conteúdo principal, Cards, Botões) para
+           manter a regra próxima do elemento que ela afeta.
+           ------------------------------------------------------------ */
+
+        /* ------------------------------------------------------------
+           11. RESPONSIVIDADE
+           ------------------------------------------------------------ */
+
+        /* >= 1024px  →  grid do design system: sidebar fixa + conteúdo */
+        @media (min-width: 1024px) {
+            body { padding-left: var(--sidebar-width); }
+            [data-nav-side="right"] body {
+                padding-left: 0;
+                padding-right: var(--sidebar-width);
+            }
+
+            .app-sidebar {
+                display: flex;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: var(--sidebar-width);
+                height: 100vh;
+                height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                z-index: 40;
+                padding-top: calc(1.25rem + var(--safe-top));
+                padding-bottom: calc(1.25rem + var(--safe-bottom));
+            }
+            [data-nav-side="right"] .app-sidebar {
+                left: auto;
+                right: 0;
+                border-right-width: 0;
+                border-left: 1px solid var(--color-slate-200);
+            }
+
+            .app-shell {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+                column-gap: var(--gutter);
+                align-items: start;
+                max-width: calc(var(--page-max) - var(--sidebar-width));
+                margin-inline: auto;
+                padding-inline: var(--gutter);
+                min-height: 100dvh;
+            }
+
+            .app-main {
+                max-width: var(--content-max);
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 0;
+                margin-block: 1.5rem;
+                border-radius: var(--radius-2xl);
+                box-shadow: var(--shadow-sm);
+                border: 1px solid var(--color-slate-200);
+            }
+
+            .app-bottom-nav {
+                display: none !important;
+            }
+        }
+
+        /* >= 1280px  →  conteúdo + trilho auxiliar 280px */
+        @media (min-width: 1280px) {
+            .app-shell {
+                grid-template-columns: minmax(0, 1fr) var(--right-width);
+            }
+            [data-nav-side="right"] .app-shell {
+                grid-template-columns: var(--right-width) minmax(0, 1fr);
+            }
+            [data-nav-side="right"] .app-rail { order: 1; }
+            [data-nav-side="right"] .app-main { order: 2; }
+
+            .app-rail {
+                display: block;
+                position: sticky;
+                top: 0;
+                max-height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                padding-bottom: var(--safe-bottom);
+            }
+        }
+    

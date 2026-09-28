@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-nav-side="left">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>gruplace - Lojas</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           GRUPLACE — FOLHA DE ESTILOS
+           ============================================================
+           1. Variáveis
+           2. Reset / Base
+           3. Layout
+           4. Sidebar
+           5. Navegação
+           6. Conteúdo principal
+           7. Busca e filtros
+           8. Cards
+           9. Botões
+           10. Estados e transições
+           11. Responsividade
+           ============================================================ */
+
+        /* ------------------------------------------------------------
+           1. VARIÁVEIS
+           ------------------------------------------------------------ */
+        :root {
+            /* Layout */
+            --sidebar-width: 240px;
+            --right-width: 280px;
+            --content-max: 680px;
+            --page-max: 1280px;
+            --gutter: 24px;
+            --bottom-nav-h: 64px;
+
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+            /* Cores */
+            --color-white: #ffffff;
+            --color-white-90: rgba(255, 255, 255, 0.9);
+            --color-slate-50: #f8fafc;
+            --color-slate-50-50: rgba(248, 250, 252, 0.5);
+            --color-slate-100: #f1f5f9;
+            --color-slate-200: #e2e8f0;
+            --color-slate-400: #94a3b8;
+            --color-slate-500: #64748b;
+            --color-slate-600: #475569;
+            --color-slate-700: #334155;
+            --color-slate-800: #1e293b;
+            --color-slate-900: #0f172a;
+            --color-indigo-950: #1e1b4b;
+            --color-red-600: #dc2626;
+
+            /* Tipografia */
+            --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+
+            --text-2xs: 0.625rem;
+            --text-xxs: 0.6875rem;
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-2xl: 1.5rem;
+
+            --tracking-tight: -0.025em;
+            --tracking-tighter: -0.05em;
+            --tracking-wider: 0.05em;
+            --tracking-widest: 0.1em;
+
+            /* Bordas / raios */
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+
+            /* Sombras */
+            --shadow-2xs: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+            /* Transições */
+            --transition-colors: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+            --transition-all: all 150ms ease;
+        }
+
+        /* ------------------------------------------------------------
+           2. RESET / BASE
+           ------------------------------------------------------------ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-padding-top: var(--safe-top);
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin: 0;
+        }
+
+        button {
+            font-family: inherit;
+            border: none;
+            background: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img,
+        svg {
+            display: block;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Espaçamento vertical entre filhos */
+        .stack-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .stack-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .stack-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        /* ------------------------------------------------------------
+           3. LAYOUT
+           ------------------------------------------------------------ */
+        .app-shell {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100dvh;
+        }
+
+        /* ------------------------------------------------------------
+           4. SIDEBAR
+           ------------------------------------------------------------ */
+        .app-sidebar {
+            display: none;
+            flex-direction: column;
+            background-color: var(--color-white);
+            border-right: 1px solid var(--color-slate-200);
+            padding-inline: 1.25rem;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            margin-bottom: 2rem;
+            padding-inline: 0.25rem;
+        }
+
+        .brand-logo {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-indigo-950);
+            color: var(--color-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--text-sm);
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: var(--text-lg);
+            letter-spacing: var(--tracking-tight);
+            text-transform: lowercase;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-slate-100);
+        }
+
+        /* ------------------------------------------------------------
+           5. NAVEGAÇÃO
+           ------------------------------------------------------------ */
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-inline: 0.75rem;
+            padding-block: 0.625rem;
+            border-radius: var(--radius-xl);
+            color: var(--color-slate-600);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-link:not(.sidebar-link--active):hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-900);
+        }
+
+        .sidebar-link--active {
+            background-color: var(--color-slate-100);
+            color: var(--color-slate-900);
+            font-weight: 600;
+        }
+
+        .sidebar-link-icon {
+            height: 1.25rem;
+            width: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .app-bottom-nav {
+            padding-bottom: calc(0.5rem + var(--safe-bottom));
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--color-white-90);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--color-slate-100);
+            padding-inline: 1rem;
+            padding-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 30;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--color-slate-400);
+            transition: var(--transition-colors);
+        }
+
+        .nav-item:not(.nav-item--active):hover {
+            color: var(--color-slate-800);
+        }
+
+        .nav-item--active {
+            color: var(--color-slate-900);
+        }
+
+        .nav-icon-lg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .nav-label {
+            font-size: var(--text-2xs);
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+
+        .nav-label--active {
+            font-weight: 700;
+        }
+
+        /* ------------------------------------------------------------
+           6. CONTEÚDO PRINCIPAL
+           ------------------------------------------------------------ */
+        .app-main {
+            width: 100%;
+            max-width: 28rem;
+            margin-inline: auto;
+            background-color: var(--color-white);
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 5rem;
+        }
+
+        .main-content {
+            flex: 1 1 0%;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .main-header {
+            padding-top: 0.5rem;
+        }
+
+        .page-title {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .app-rail {
+            display: none;
+            width: 100%;
+        }
+
+        .rail-panel {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-slate-200);
+            border-radius: var(--radius-2xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rail-panel-title {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
+            color: var(--color-slate-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .rail-panel-text {
+            font-size: var(--text-xs);
+            color: var(--color-slate-500);
+        }
+
+        /* ------------------------------------------------------------
+           7. BUSCA E FILTROS
+           ------------------------------------------------------------ */
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            inset-block: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            padding-left: 0.875rem;
+            pointer-events: none;
+            color: var(--color-slate-400);
+        }
+
+        .search-icon-svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .search-field {
+            width: 100%;
+            background-color: var(--color-slate-50);
+            border: 1px solid var(--color-slate-200);
+            font-size: var(--text-xs);
+            border-radius: var(--radius-2xl);
+            padding-left: 2.5rem;
+            padding-right: 1rem;
+            padding-block: 0.75rem;
+            color: var(--color-slate-800);
+            transition: var(--transition-all);
+        }
+
+        .search-field::placeholder {
+            color: var(--color-slate-400);
+        }
+
+        .search-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--color-slate-200);
+            border-color: transparent;
+        }
+
+        .category-carousel {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .category-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 4rem;
+            cursor: pointer;
+        }
+
+        .category-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: var(--radius-2xl);
+            background-color: var(--color-slate-50);
+            border: 1px solid var(--color-slate-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-slate-700);
+            transition: var(--transition-colors);
+            box-shadow: var(--shadow-2xs);
+        }
+
+        .category-btn:hover .category-icon {
+            background-color: var(--color-slate-100);
+        }
+
+        .category-icon--selected {
+            background-color: var(--color-slate-900);
+            color: var(--color-white);
+        }
+
+        .category-icon-svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--color-slate-700);
+        }
+
+        .category-icon--selected .category-icon-svg {
+            color: var(--color-white);
+        }
+
+        .category-icon-svg--fixed-stroke {
+            stroke: currentColor;
+        }
+
+        .category-label {
+            font-size: var(--text-xxs);
+            font-weight: 500;
+            color: var(--color-slate-700);
+            margin-top: 0.375rem;
+            text-align: center;
+        }
+
+        .category-label--truncate {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ------------------------------------------------------------
+           8. CARDS
+           ------------------------------------------------------------ */
+        .section-title {
+            font-size: var(--text-sm);
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.625rem;
+        }
+
+        .store-card {
+            background-color: var(--color-slate-50-50);
+            border: 1px solid var(--color-slate-200);
+            border-radius: var(--radius-2xl);
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-colors);
+        }
+
+        .store-card:hover {
+            background-color: var(--color-slate-50);
+        }
+
+        .store-logo {
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .store-logo-text {
+            color: var(--color-slate-900);
+        }
+
+        .store-logo-text--zara {
+            font-family: var(--font-serif);
+            font-weight: 900;
+            letter-spacing: var(--tracking-widest);
+            font-size: var(--text-base);
+        }
+
+        .store-logo-text--sephora {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 700;
+            font-size: var(--text-lg);
+        }
+
+        .store-logo-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-weight: 700;
+        }
+
+        .store-logo-badge--renner {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-full);
+            background-color: var(--color-red-600);
+            font-style: italic;
+            font-size: var(--text-sm);
+            box-shadow: var(--shadow-xs);
+        }
+
+        .store-logo-badge--cea {
+            padding-inline: 0.5rem;
+            padding-block: 0.25rem;
+            background-color: var(--color-slate-900);
+            border-radius: var(--radius-md);
+            font-size: var(--text-2xs);
+            letter-spacing: var(--tracking-tighter);
+        }
+
+        .store-logo-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--color-slate-900);
+        }
+
+        .store-info {
+            margin-top: 0.5rem;
+        }
+
+        .store-name {
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--color-slate-900);
+        }
+
+        .store-category {
+            font-size: var(--text-2xs);
+            color: var(--color-slate-500);
+            font-weight: 500;
+            margin-top: 0.125rem;
+        }
+
+        /* ------------------------------------------------------------
+           9. BOTÕES
+           ------------------------------------------------------------ */
+        .sidebar-toggle-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding-inline: 0.75rem;
+            padding-block: 0.5rem;
+            border-radius: var(--radius-xl);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--color-slate-500);
+            cursor: pointer;
+            transition: var(--transition-colors);
+        }
+
+        .sidebar-toggle-btn:hover {
+            background-color: var(--color-slate-50);
+            color: var(--color-slate-800);
+        }
+
+        .sidebar-toggle-icon {
+            height: 1rem;
+            width: 1rem;
+        }
+
+        /* ------------------------------------------------------------
+           10. ESTADOS E TRANSIÇÕES
+           ------------------------------------------------------------ */
+
+        /* ------------------------------------------------------------
+           11. RESPONSIVIDADE
+           ------------------------------------------------------------ */
+
+        @media (min-width: 1024px) {
+            body {
+                padding-left: var(--sidebar-width);
+            }
+
+            [data-nav-side="right"] body {
+                padding-left: 0;
+                padding-right: var(--sidebar-width);
+            }
+
+            .app-sidebar {
+                display: flex;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                width: var(--sidebar-width);
+                height: 100vh;
+                height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                z-index: 40;
+                padding-top: calc(1.25rem + var(--safe-top));
+                padding-bottom: calc(1.25rem + var(--safe-bottom));
+            }
+
+            [data-nav-side="right"] .app-sidebar {
+                left: auto;
+                right: 0;
+                border-right-width: 0;
+                border-left: 1px solid var(--color-slate-200);
+            }
+
+            .app-shell {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+                column-gap: var(--gutter);
+                align-items: start;
+                max-width: calc(var(--page-max) - var(--sidebar-width));
+                margin-inline: auto;
+                padding-inline: var(--gutter);
+                min-height: 100dvh;
+            }
+
+            .app-main {
+                max-width: var(--content-max);
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 0;
+                margin-block: 1.5rem;
+                border-radius: var(--radius-2xl);
+                box-shadow: var(--shadow-sm);
+                border: 1px solid var(--color-slate-200);
+            }
+
+            .app-bottom-nav {
+                display: none !important;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .app-shell {
+                grid-template-columns: minmax(0, 1fr) var(--right-width);
+            }
+
+            [data-nav-side="right"] .app-shell {
+                grid-template-columns: var(--right-width) minmax(0, 1fr);
+            }
+
+            [data-nav-side="right"] .app-rail {
+                order: 1;
+            }
+
+            [data-nav-side="right"] .app-main {
+                order: 2;
+            }
+
+            .app-rail {
+                display: block;
+                position: sticky;
+                top: 0;
+                max-height: 100dvh;
+                overflow-y: auto;
+                overscroll-behavior: contain;
+                padding-bottom: var(--safe-bottom);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+         SHELL PRINCIPAL RESPONSIVO
+         ============================================================ -->
+    <div class="app-shell">
+
+        <!-- ========== BARRA LATERAL (desktop) ========== -->
+        <aside class="app-sidebar" aria-label="Navegação principal">
+
+            <!-- Marca -->
+            <div class="sidebar-brand">
+                <span class="brand-logo">g</span>
+                <span class="brand-name">gruplace</span>
+            </div>
+
+            <!-- Navegação -->
+            <nav class="sidebar-nav">
+
+                <!-- Início -->
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 10.5 12 3l9 7.5"></path>
+                        <path d="M5 9.8V21h14V9.8"></path>
+                    </svg>
+                    Início
+                </a>
+
+                <!-- Lojas -->
+                <a href="#" class="sidebar-link sidebar-link--active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M3 9l1.5-5h15L21 9"></path>
+                        <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+                        <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+                        <path d="M3 9h18"></path>
+                    </svg>
+                    Lojas
+                </a>
+
+                <!-- Favoritos -->
+                <a href="#" class="sidebar-link">
+                    <svg class="nav-icon-lg" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    Favoritos
+                </a>
+
+                <!-- IA Concierge -->
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                        <path d="M12 12 2.1 12.1"></path>
+                        <path d="M12 12l4.3-8.6"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    IA Concierge
+                </a>
+
+                <!-- Perfil -->
+                <a href="#" class="sidebar-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <circle cx="12" cy="9" r="3.4"></circle>
+                        <path d="M5 20c1.4-3.2 4-4.6 7-4.6s5.6 1.4 7 4.6"></path>
+                    </svg>
+                    Perfil
+                </a>
+
+            </nav>
+
+            <!-- Rodapé da sidebar -->
+            <div class="sidebar-footer stack-3">
+                <button id="toggle-nav-side" class="sidebar-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="sidebar-toggle-icon"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span id="toggle-nav-label">Menu à direita</span>
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- ========== COLUNA PRINCIPAL ========== -->
+        <main class="app-main">
+
+            <!-- CONTEÚDO SCROLLÁVEL -->
+            <div class="main-content stack-6">
+
+                <!-- Título Principal -->
+                <header class="main-header">
+                    <h1 class="page-title">Lojas</h1>
+                </header>
+
+                <!-- Barra de Pesquisa -->
+                <div class="search-wrapper">
+                    <span class="search-icon">
+                        <svg class="search-icon-svg"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+
+                    <input type="text"
+                        id="search-input"
+                        placeholder="Buscar lojas"
+                        class="search-field">
+                </div>
+
+                <!-- Carrossel / Grid Horizontal de Categorias -->
+                <section>
+                    <div class="category-carousel no-scrollbar">
+
+                        <!-- Moda -->
+                        <button class="category-btn" data-category="moda">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H5v10a2 2 0 002 2h10a2 2 0 002-2V10h1.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z" />
+                                </svg>
+                            </div>
+                            <span class="category-label">Moda</span>
+                        </button>
+
+                        <!-- Beleza -->
+                        <button class="category-btn" data-category="beleza">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                </svg>
+                            </div>
+                            <span class="category-label">Beleza</span>
+                        </button>
+
+                        <!-- Tecnologia -->
+                        <button class="category-btn" data-category="tecnologia">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg category-icon-svg--fixed-stroke"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3">
+                                    </path>
+                                </svg>
+                            </div>
+                            <span class="category-label category-label--truncate">Tecnologia</span>
+                        </button>
+
+                        <!-- Gastronomia -->
+                        <button class="category-btn" data-category="gastronomia">
+                            <div class="category-icon">
+                                <svg xmlns="http://w3.org"
+                                    viewBox="0 0 100 100"
+                                    width="40"
+                                    height="40"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M 20 68 A 30 30 0 0 1 80 68 Z"></path>
+                                    <path d="M 14 68 L 86 68"></path>
+                                    <path d="M 44 38 C 44 32, 56 32, 56 38"></path>
+                                </svg>
+                            </div>
+                            <span class="category-label category-label--truncate">Gastronomia</span>
+                        </button>
+
+                        <!-- Esportes -->
+                        <button class="category-btn" data-category="esportes">
+                            <div class="category-icon">
+                                <img alt="esporte"
+                                    loading="lazy"
+                                    width="30"
+                                    height="30"
+                                    decoding="async"
+                                    data-nimg="1"
+                                    src="assets/img/esportes/icon_esportes.png"
+                                    style="color: transparent;">
+                            </div>
+                            <span class="category-label">Esportes</span>
+                        </button>
+
+                        <!-- Casa -->
+                        <button class="category-btn" data-category="casa">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </div>
+                            <span class="category-label">Casa</span>
+                        </button>
+
+                        <!-- Games -->
+                        <button class="category-btn" data-category="games">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                                </svg>
+                            </div>
+                            <span class="category-label">Games</span>
+                        </button>
+
+                        <!-- Entretenimento -->
+                        <button class="category-btn" data-category="entretenimento">
+                            <div class="category-icon">
+                                <svg class="category-icon-svg"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+                                </svg>
+                            </div>
+                            <span class="category-label category-label--truncate">Entretenimento</span>
+                        </button>
+
+                    </div>
+                </section>
+
+                <!-- Seção: Lojas em destaque -->
+                <section class="featured-section stack-3">
+
+                    <h2 class="section-title">Lojas em destaque</h2>
+
+                    <!-- Grid de Lojas -->
+                    <div class="store-grid">
+
+                        <!-- Card 1: ZARA -->
+                        <article class="store-card" data-store="zara">
+                            <div class="store-logo">
+                                <span class="store-logo-text store-logo-text--zara">ZARA</span>
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">ZARA</h3>
+                                <p class="store-category">Moda</p>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Nike -->
+                        <article class="store-card" data-store="nike">
+                            <div class="store-logo">
+                                <img alt="esporte"
+                                    loading="lazy"
+                                    width="40"
+                                    height="40"
+                                    decoding="async"
+                                    data-nimg="1"
+                                    src="assets/img/marcas/logo-nike.svg"
+                                    style="color: transparent;">
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">Nike</h3>
+                                <p class="store-category">Esportes</p>
+                            </div>
+                        </article>
+
+                        <!-- Card 3: Sephora -->
+                        <article class="store-card" data-store="sephora">
+                            <div class="store-logo">
+                                <span class="store-logo-text store-logo-text--sephora">S</span>
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">Sephora</h3>
+                                <p class="store-category">Beleza</p>
+                            </div>
+                        </article>
+
+                        <!-- Card 4: Renner -->
+                        <article class="store-card" data-store="renner">
+                            <div class="store-logo">
+                                <div class="store-logo-badge store-logo-badge--renner">
+                                    r
+                                </div>
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">Renner</h3>
+                                <p class="store-category">Moda</p>
+                            </div>
+                        </article>
+
+                        <!-- Card 5: C&A -->
+                        <article class="store-card" data-store="cea">
+                            <div class="store-logo">
+                                <div class="store-logo-badge store-logo-badge--cea">
+                                    C&A
+                                </div>
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">C&A</h3>
+                                <p class="store-category">Moda</p>
+                            </div>
+                        </article>
+
+                        <!-- Card 6: Apple -->
+                        <article class="store-card" data-store="apple">
+                            <div class="store-logo">
+                                <svg class="store-logo-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.31c.65-.79 1.09-1.89.97-2.99-.94.04-2.08.63-2.75 1.42-.58.67-1.1 1.77-.96 2.84 1.05.08 2.11-.48 2.74-1.27z" />
+                                </svg>
+                            </div>
+
+                            <div class="store-info">
+                                <h3 class="store-name">Apple</h3>
+                                <p class="store-category">Tecnologia</p>
+                            </div>
+                        </article>
+
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+
+        <!-- ========== TRILHO AUXILIAR ========== -->
+        <aside class="app-rail" aria-label="Conteúdo complementar">
+
+            <div class="rail-content stack-4">
+
+                <section class="rail-panel">
+                    <h2 class="rail-panel-title">Painel de Lojas</h2>
+
+                    <p class="rail-panel-text">
+                        Utilize este espaço em telas largas para filtros avançados
+                        de shoppings e marcas parceiras do gruplace.
+                    </p>
+                </section>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- ============================================================
+         MENU DE NAVEGAÇÃO INFERIOR
+         ============================================================ -->
+    <nav class="app-bottom-nav" aria-label="Navegação principal">
+
+        <!-- Início -->
+        <a href="#" class="nav-item">
+            <svg width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 10.5 12 3l9 7.5"></path>
+                <path d="M5 9.8V21h14V9.8"></path>
+            </svg>
+
+            <span class="nav-label">Início</span>
+        </a>
+
+        <!-- Lojas (Ativo) -->
+        <a href="#" class="nav-item nav-item--active">
+            <svg width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M3 9l1.5-5h15L21 9"></path>
+                <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+                <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+                <path d="M3 9h18"></path>
+            </svg>
+
+            <span class="nav-label nav-label--active">Lojas</span>
+        </a>
+
+        <!-- Favoritos -->
+        <a href="#" class="nav-item">
+            <svg class="nav-icon-lg"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+
+            <span class="nav-label">Favoritos</span>
+        </a>
+
+        <!-- IA -->
+        <a href="#" class="nav-item">
+            <svg width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                <path d="M12 12 2.1 12.1"></path>
+                <path d="M12 12l4.3-8.6"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+
+            <span class="nav-label">IA Concierge</span>
+        </a>
+
+        <!-- Perfil -->
+        <a href="#" class="nav-item">
+            <svg width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round">
+                <circle cx="12" cy="9" r="3.4"></circle>
+                <path d="M5 20c1.4-3.2 4-4.6 7-4.6s5.6 1.4 7 4.6"></path>
+            </svg>
+
+            <span class="nav-label">Perfil</span>
+        </a>
+
+    </nav>
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+    <script src="js/shared/nav-side.js"></script>
+    <script>
+
+        // ============================================================
+        // 1. FUNCIONALIDADE DE BUSCA DINÂMICA POR LOJAS
+        // ============================================================
+
+        const searchInput =
+            document.getElementById('search-input');
+
+        const storeCards =
+            document.querySelectorAll('.store-card');
+
+        searchInput.addEventListener('input', (e) => {
+
+            const term =
+                e.target.value.toLowerCase().trim();
+
+            storeCards.forEach(card => {
+
+                const storeName =
+                    card.querySelector('h3')
+                        .textContent
+                        .toLowerCase();
+
+                const storeCategory =
+                    card.querySelector('p')
+                        .textContent
+                        .toLowerCase();
+
+                if (
+                    storeName.includes(term) ||
+                    storeCategory.includes(term)
+                ) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+
+        // ============================================================
+        // 2. INTERATIVIDADE DOS BOTÕES DE CATEGORIA
+        // ============================================================
+
+        const categoryBtns =
+            document.querySelectorAll('.category-btn');
+
+        categoryBtns.forEach(btn => {
+
+            btn.addEventListener('click', () => {
+
+                categoryBtns.forEach(b => {
+
+                    b.querySelector('.category-icon')
+                        .classList
+                        .remove('category-icon--selected');
+
+                });
+
+                btn.querySelector('.category-icon')
+                    .classList
+                    .add('category-icon--selected');
+
+                const catName =
+                    btn.querySelector('span').textContent;
+
+                searchInput.value = catName;
+
+                searchInput.dispatchEvent(
+                    new Event('input')
+                );
+            });
+        });
+
+
+        // ============================================================
+        // 3. CLIQUE NOS CARDS DE LOJAS EM DESTAQUE
+        // ============================================================
+
+        storeCards.forEach(card => {
+
+            card.addEventListener('click', () => {
+
+                const storeName =
+                    card.querySelector('h3').textContent;
+
+                alert(
+                    `Você clicou na loja: ${storeName}`
+                );
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

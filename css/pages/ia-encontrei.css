@@ -1,0 +1,657 @@
+/* ============================================================
+   IA — ENCONTREI PARA MIM
+   Layout padronizado
+   ============================================================ */
+
+/* ============================================================
+   1. VARIÁVEIS
+   ============================================================ */
+
+:root {
+    --sidebar-width: 240px;
+    --content-max: 680px;
+    --page-max: 1280px;
+    --gutter: 24px;
+
+    --bottom-nav-h: 64px;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+    --color-white: #ffffff;
+    --color-white-90: rgba(255, 255, 255, 0.90);
+
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
+
+    --color-blue-50: #eff6ff;
+    --color-blue-50-70: rgba(239, 246, 255, 0.70);
+    --color-blue-100: #dbeafe;
+    --color-blue-100-80: rgba(219, 234, 254, 0.80);
+    --color-blue-500: #3b82f6;
+    --color-blue-600: #2563eb;
+    --color-blue-900: #1e3a8a;
+
+    --color-emerald-500: #10b981;
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system,
+        'Segoe UI', sans-serif;
+
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-full: 9999px;
+
+    --shadow-2xs: 0 1px 1px 0 rgb(0 0 0 / 0.03);
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+        0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+
+    --transition-colors:
+        color 150ms ease,
+        background-color 150ms ease,
+        border-color 150ms ease;
+
+    --transition-all: all 200ms ease;
+}
+
+/* ============================================================
+   2. RESET / BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-padding-top: var(--safe-top);
+}
+
+body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-slate-100);
+    color: var(--color-slate-900);
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ============================================================
+   3. LAYOUT PRINCIPAL
+   ============================================================ */
+
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100dvh;
+}
+
+.app-main {
+    width: 100%;
+    max-width: 28rem;
+    margin-inline: auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--color-white);
+}
+
+/* ============================================================
+   4. SIDEBAR
+   ============================================================ */
+
+.app-sidebar {
+    display: none;
+    background-color: var(--color-white);
+    border-right: 1px solid var(--color-slate-200);
+    padding: 1.25rem;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 2rem;
+    padding: 0 0.25rem;
+}
+
+.brand-logo {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-blue-600);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: lowercase;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.025em;
+    color: var(--color-slate-800);
+    text-transform: lowercase;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-xl);
+    color: var(--color-slate-600);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: var(--transition-colors);
+}
+
+.sidebar-link:hover {
+    background-color: var(--color-blue-50);
+    color: var(--color-blue-600);
+}
+
+.sidebar-link--active {
+    background-color: var(--color-blue-50);
+    color: var(--color-blue-600);
+    font-weight: 600;
+}
+
+.sidebar-link--active:hover {
+    background-color: var(--color-blue-50);
+    color: var(--color-blue-600);
+}
+
+.sidebar-link-icon {
+    font-size: 1.125rem;
+    width: 1.25rem;
+    text-align: center;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top-width: 1px;
+    border-color: var(--color-slate-100);
+}
+
+.sidebar-footer > * + * {
+    margin-top: 0.75rem;
+}
+
+.toggle-nav-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-xl);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-slate-500);
+}
+
+.toggle-nav-button:hover {
+    background-color: var(--color-slate-50);
+    color: var(--color-slate-800);
+}
+
+.icon-sm {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   5. NAVEGAÇÃO INFERIOR
+   ============================================================ */
+
+.app-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-white-90);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--color-slate-100);
+    color: var(--color-slate-400);
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    padding-bottom: calc(0.5rem + var(--safe-bottom));
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 30;
+    box-shadow: var(--shadow-lg);
+}
+
+.bottom-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--transition-colors);
+}
+
+.bottom-nav-link:hover {
+    color: var(--color-blue-600);
+}
+
+.bottom-nav-link--active {
+    color: var(--color-blue-600);
+    font-weight: 500;
+}
+
+.bottom-nav-link--active:hover {
+    color: var(--color-blue-600);
+}
+
+.bottom-nav-icon {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+/* ============================================================
+   6. CONTEÚDO DA IA
+   ============================================================ */
+
+.ia-content {
+    width: 100%;
+    flex: 1 1 auto;
+    padding: 2.5rem 1.25rem
+        calc(var(--bottom-nav-h) + var(--safe-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+/* ============================================================
+   7. AVATAR / CABEÇALHO
+   ============================================================ */
+
+.avatar {
+    width: 5rem;
+    height: 5rem;
+    flex-shrink: 0;
+    background-color: var(--color-blue-50);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    border: 1px solid var(--color-blue-100);
+}
+
+.avatar-icon {
+    font-size: 2.25rem;
+    color: var(--color-blue-500);
+}
+
+.avatar-status {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-emerald-500);
+    border: 2px solid var(--color-white);
+    border-radius: var(--radius-full);
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-slate-800);
+    margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+    color: var(--color-slate-500);
+    font-size: 0.875rem;
+    max-width: 280px;
+    line-height: 1.625;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================================
+   8. EXEMPLO
+   ============================================================ */
+
+.example-bubble {
+    background-color: var(--color-blue-50-70);
+    border: 1px solid var(--color-blue-100-80);
+    border-radius: var(--radius-2xl);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    box-shadow: var(--shadow-xs);
+}
+
+.example-bubble-text {
+    font-size: 0.75rem;
+    color: var(--color-blue-900);
+    font-weight: 500;
+    line-height: 1.625;
+}
+
+.example-bubble-tail {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-blue-50);
+    border-right: 1px solid var(--color-blue-100);
+    border-bottom: 1px solid var(--color-blue-100);
+}
+
+/* ============================================================
+   9. BUSCA
+   ============================================================ */
+
+.ia-search {
+    width: 100%;
+    flex-shrink: 0;
+    background-color: var(--color-white);
+    padding: 0.5rem 1rem 0.75rem;
+    border-top: 1px solid var(--color-slate-100);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: calc(var(--bottom-nav-h) + var(--safe-bottom));
+}
+
+.search-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    background-color: var(--color-slate-50);
+    border: 1px solid var(--color-slate-200);
+    border-radius: var(--radius-full);
+    padding: 0.875rem 3.5rem 0.875rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-slate-800);
+    box-shadow: var(--shadow-inner);
+    transition: var(--transition-all);
+}
+
+.search-input::placeholder {
+    color: var(--color-slate-400);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-blue-500);
+    background-color: var(--color-white);
+}
+
+.search-submit {
+    position: absolute;
+    right: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-slate-100);
+    color: var(--color-slate-500);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-all);
+    box-shadow: var(--shadow-2xs);
+}
+
+.search-submit:hover {
+    background-color: var(--color-blue-500);
+    color: var(--color-white);
+}
+
+.search-submit-icon {
+    font-size: 0.75rem;
+}
+
+/* ============================================================
+   10. SUGESTÕES
+   ============================================================ */
+
+.suggestions {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.suggestions-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-slate-800);
+    margin-bottom: 0.75rem;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+}
+
+.suggestion-chip {
+    background-color: var(--color-slate-50);
+    color: var(--color-slate-700);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-slate-200);
+    box-shadow: var(--shadow-2xs);
+    transition: var(--transition-all);
+}
+
+.suggestion-chip:hover {
+    background-color: var(--color-blue-50);
+    color: var(--color-blue-600);
+    border-color: var(--color-blue-100);
+}
+
+/* ============================================================
+   11. RESULTADOS / CHAT
+   ============================================================ */
+
+.chat-results {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.chat-results > * + * {
+    margin-top: 0.75rem;
+}
+
+.chat-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.chat-message--user {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.chat-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-blue-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.chat-avatar-icon {
+    font-size: 0.75rem;
+    color: var(--color-blue-600);
+}
+
+.chat-bubble {
+    padding: 0.75rem;
+    border-radius: var(--radius-2xl);
+    font-size: 0.75rem;
+    max-width: 80%;
+}
+
+.chat-bubble--bot {
+    background-color: var(--color-slate-100);
+    color: var(--color-slate-700);
+    border-top-left-radius: 0;
+}
+
+.chat-bubble--user {
+    background-color: var(--color-blue-600);
+    color: var(--color-white);
+    border-top-right-radius: 0;
+    box-shadow: var(--shadow-xs);
+}
+
+/* ============================================================
+   12. DESKTOP
+   ============================================================ */
+
+@media (min-width: 1024px) {
+    body {
+        padding-left: var(--sidebar-width);
+    }
+
+    [data-nav-side="right"] body {
+        padding-left: 0;
+        padding-right: var(--sidebar-width);
+    }
+
+    .app-sidebar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--sidebar-width);
+        height: 100vh;
+        height: 100dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        z-index: 40;
+        padding-top: calc(1.25rem + var(--safe-top));
+        padding-bottom: calc(1.25rem + var(--safe-bottom));
+    }
+
+    [data-nav-side="right"] .app-sidebar {
+        left: auto;
+        right: 0;
+        border-right-width: 0;
+        border-left-width: 1px;
+    }
+
+    .app-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        column-gap: var(--gutter);
+        align-items: start;
+        max-width: calc(var(--page-max) - var(--sidebar-width));
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+        min-height: 100dvh;
+    }
+
+    .app-main {
+        max-width: var(--content-max);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        min-height: 0;
+        border-radius: var(--radius-2xl);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--color-slate-200);
+        overflow: hidden;
+    }
+
+    .ia-content {
+        padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .ia-search {
+        margin-bottom: 0;
+        padding: 0.75rem 1rem 1rem;
+    }
+
+    .app-bottom-nav {
+        display: none !important;
+    }
+}

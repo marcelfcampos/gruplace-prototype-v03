@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-nav-side="left">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>gruplace - ZARA Novidades, Ofertas e Cupons</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages/store-tabs.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         SHELL PRINCIPAL RESPONSIVO
+         ============================================================ -->
+    <div class="app-shell">
+
+        <!-- ========== BARRA LATERAL (desktop) ========== -->
+        <aside class="app-sidebar" aria-label="Navegação principal">
+
+            <!-- Marca -->
+            <div class="sidebar-brand">
+                <span class="sidebar-brand-logo">g</span>
+                <span class="sidebar-brand-name">gruplace</span>
+            </div>
+
+            <!-- Navegação -->
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-nav-link">
+                    <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 10.5 12 3l9 7.5"></path>
+                        <path d="M5 9.8V21h14V9.8"></path>
+                    </svg>
+                    Início
+                </a>
+                <a href="#" class="sidebar-nav-link sidebar-nav-link--active">
+                    <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 9l1.5-5h15L21 9"></path>
+                        <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+                        <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+                        <path d="M3 9h18"></path>
+                    </svg>
+                    Lojas
+                </a>
+                <a href="#" class="sidebar-nav-link">
+                    <svg class="sidebar-nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    Favoritos
+                </a>
+                <a href="#" class="sidebar-nav-link">
+                    <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                        <path d="M12 12l2.1 12.1"></path>
+                        <path d="M12 12l4.3-8.6"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    IA Concierge
+                </a>
+                <a href="#" class="sidebar-nav-link">
+                    <svg class="sidebar-nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                        <circle cx="12" cy="9" r="3.4"></circle>
+                        <path d="M5 20c1.4-3.2 4-4.6 7-4.6s5.6 1.4 7 4.6"></path>
+                    </svg>
+                    Perfil
+                </a>
+            </nav>
+
+            <!-- Rodapé da sidebar (alternar posição) -->
+            <div class="sidebar-footer">
+                <button id="toggle-nav-side" class="sidebar-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="sidebar-toggle-icon" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span id="toggle-nav-label">Menu à direita</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ========== COLUNA PRINCIPAL (Conteúdo da Loja) ========== -->
+        <main class="app-main">
+
+            <!-- CABEÇALHO / HEADER DA LOJA -->
+            <header class="store-header">
+                <div class="store-header-top">
+                    <div class="store-header-left">
+
+                        <!-- Botão Voltar -->
+                        <button class="back-btn" aria-label="Voltar">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="back-btn-icon" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+
+                        <!-- Mini Avatar e Info (Com Floripa Shopping abaixo de Moda) -->
+                        <div class="store-info">
+                            <div class="store-avatar">
+                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&auto=format&fit=crop&q=80"
+                                    alt="Zara" class="store-avatar-img">
+                            </div>
+                            <div>
+                                <h1 class="store-name">ZARA</h1>
+                                <p class="store-category">Moda</p>
+                                <!-- Localização (Floripa Shopping) alinhada diretamente abaixo dos textos da loja -->
+                                <div class="store-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="store-location-icon" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                    <span>Floripa Shopping</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Abas de Navegação -->
+                <nav class="tabs-nav no-scrollbar">
+                    <button class="tab-btn" data-tab="visao-geral">
+                        Visão geral
+                    </button>
+                    <button class="tab-btn tab-btn--active" data-tab="novidades">
+                        Novidades
+                    </button>
+                    <button class="tab-btn" data-tab="ofertas">
+                        Ofertas
+                    </button>
+                    <button class="tab-btn" data-tab="cupons">
+                        Cupons
+                    </button>
+                </nav>
+            </header>
+
+            <!-- CONTEÚDO DINÂMICO DA ABA SELECIONADA -->
+            <div id="tab-content" class="tab-content">
+
+                <!-- SEÇÃO: DESTAQUES DA LOJA / NOVIDADES -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Destaques da loja</h2>
+                        <a href="#" class="section-link">
+                            Ver todas <span class="section-link-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Grid de Produtos em Destaque -->
+                    <div class="product-grid">
+
+                        <!-- Card Produto 1 -->
+                        <div class="product-card">
+                            <div class="product-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80"
+                                    alt="Blazer alfaiataria" class="product-image">
+                                <!-- Badge Novo -->
+                                <span class="badge badge--new">
+                                    Novo
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="product-name">Blazer alfaiataria</h3>
+                                <p class="product-price">R$ 399,90</p>
+                            </div>
+                        </div>
+
+                        <!-- Card Produto 2 -->
+                        <div class="product-card">
+                            <div class="product-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&auto=format&fit=crop&q=80"
+                                    alt="Calça wide leg" class="product-image">
+                                <!-- Badge Novo -->
+                                <span class="badge badge--new">
+                                    Novo
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="product-name">Calça wide leg</h3>
+                                <p class="product-price">R$ 279,90</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SEÇÃO: OFERTAS -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Ofertas</h2>
+                        <a href="#" class="section-link">
+                            Ver todas <span class="section-link-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Grid de Ofertas -->
+                    <div class="product-grid">
+
+                        <!-- Card Oferta 1 -->
+                        <div class="product-card">
+                            <div class="product-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&auto=format&fit=crop&q=80"
+                                    alt="Vestido midi" class="product-image">
+                                <!-- Badge Desconto -->
+                                <span class="badge badge--discount">
+                                    -30%
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="product-name">Vestido midi</h3>
+                                <p class="product-price">R$ 199,90</p>
+                            </div>
+                        </div>
+
+                        <!-- Card Oferta 2 -->
+                        <div class="product-card">
+                            <div class="product-image-wrap">
+                                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&auto=format&fit=crop&q=80"
+                                    alt="Bolsa transversal" class="product-image">
+                                <!-- Badge Desconto -->
+                                <span class="badge badge--discount">
+                                    -30%
+                                </span>
+                            </div>
+                            <div>
+                                <h3 class="product-name">Bolsa transversal</h3>
+                                <p class="product-price">R$ 249,90</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SEÇÃO: CUPONS -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Cupons</h2>
+                        <a href="#" class="section-link">
+                            Ver todos <span class="section-link-arrow">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Card de Cupom -->
+                    <div class="coupon-card">
+                        <div>
+                            <span class="coupon-brand">ZARA</span>
+                            <h3 class="coupon-title">15% OFF</h3>
+                            <p class="coupon-desc">Em compras acima de R$ 300</p>
+                        </div>
+                        <button class="coupon-btn">
+                            Ver cupom
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+
+        </main>
+
+        <!-- ========== TRILHO AUXILIAR (Apenas desktop largo) ========== -->
+        <aside class="app-rail" aria-label="Conteúdo complementar">
+            <div class="rail-content">
+                <section class="rail-card">
+                    <h2 class="rail-card-title">Painel ZARA</h2>
+                    <p class="rail-card-text">Navegue pelas ofertas, novidades e cupons exclusivos da loja no
+                        ecossistema gruplace.</p>
+                </section>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- ============================================================
+         MENU DE NAVEGAÇÃO INFERIOR (Apenas dispositivos móveis < 1024px)
+         ============================================================ -->
+    <nav class="app-bottom-nav" aria-label="Navegação principal">
+        <!-- Inicio -->
+        <a href="#" class="bottom-nav-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 10.5 12 3l9 7.5"></path>
+                <path d="M5 9.8V21h14V9.8"></path>
+            </svg>
+            <span class="bottom-nav-label">Início</span>
+        </a>
+        <!-- Lojas -->
+        <a href="#" class="bottom-nav-link bottom-nav-link--active">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 9l1.5-5h15L21 9"></path>
+                <path d="M4 9v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9"></path>
+                <path d="M9 20v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6"></path>
+                <path d="M3 9h18"></path>
+            </svg>
+            <span class="bottom-nav-label bottom-nav-label--active">Lojas</span>
+        </a>
+        <!-- Favoritos -->
+        <a href="#" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span class="bottom-nav-label">Favoritos</span>
+        </a>
+        <!-- IA -->
+        <a href="#" class="bottom-nav-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                <path d="M12 12l2.1 12.1"></path>
+                <path d="M12 12l4.3-8.6"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <span class="bottom-nav-label">IA Concierge</span>
+        </a>
+        <!-- Perfil -->
+        <a href="#" class="bottom-nav-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round">
+                <circle cx="12" cy="9" r="3.4"></circle>
+                <path d="M5 20c1.4-3.2 4-4.6 7-4.6s5.6 1.4 7 4.6"></path>
+            </svg>
+            <span class="bottom-nav-label">Perfil</span>
+        </a>
+    </nav>
+
+    <!-- Lógica em JavaScript Moderno (ES6+) -->
+    <script src="js/shared/nav-side.js"></script>
+    <script src="js/pages/store-tabs.js"></script>
+</body>
+
+</html>
