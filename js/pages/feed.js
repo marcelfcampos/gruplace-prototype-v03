@@ -64,3 +64,27 @@
                 window.location.href = '5-card-de-produto-detalhe.html';
             });
         });
+
+
+        /* ============================================================
+           5. VER NA LOJA E SEGUIR — abre a página da marca do card
+           ============================================================ */
+        const LOJAS = {
+            nike:    '7-pagina-da-loja-nike.html',
+            sephora: '7-pagina-da-loja-sephora.html',
+            zara:    '7-pagina-da-loja.html',
+            adidas:  '7-pagina-da-loja-adidas.html',
+            renner:  '7-pagina-da-loja-renner.html',
+            natura:  '7-pagina-da-loja-natura.html'
+        };
+        document.querySelectorAll('.view-store-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = btn.closest('article');
+                const marcaEl = card && card.querySelector('.product-brand');
+                const marca = marcaEl ? marcaEl.textContent.trim().toLowerCase() : '';
+                if (LOJAS[marca]) {
+                    window.location.href = LOJAS[marca];
+                }
+            });
+        });
