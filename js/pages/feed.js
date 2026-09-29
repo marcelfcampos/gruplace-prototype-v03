@@ -35,15 +35,44 @@
         /* ============================================================
            2. FAVORITAR
            ============================================================ */
+        const Fav = window.GruplaceFavorites;
+        const dadosDoCard = (card) => {
+            const txt = (sel) => {
+                const el = card.querySelector(sel);
+                return el ? el.textContent.trim() : '';
+            };
+            const imgEl = card.querySelector('.product-image');
+            const marca = txt('.product-brand');
+            const titulo = txt('.product-title');
+            return {
+                id: Fav.criarId(marca, titulo),
+                marca: marca,
+                titulo: titulo,
+                preco: txt('.product-price'),
+                desconto: txt('.product-discount'),
+                img: imgEl ? (imgEl.getAttribute('src') || '') : '',
+                alt: imgEl ? imgEl.alt : titulo
+            };
+        };
+        const coracoes = [];
         document.querySelectorAll('article button[aria-label="Favoritar"]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const svg = btn.querySelector('svg');
-                const ativo = svg.classList.toggle('favorite-icon-filled');
+            const card = btn.closest('article');
+            const svg = btn.querySelector('svg');
+            if (!card || !svg) return;
+            const dados = dadosDoCard(card);
+            const aplicar = (ativo) => {
+                svg.classList.toggle('favorite-icon-filled', ativo);
                 svg.classList.toggle('favorite-icon-empty', !ativo);
                 btn.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+            };
+            aplicar(Fav.has(dados.id));
+            coracoes.push(() => aplicar(Fav.has(dados.id)));
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                aplicar(Fav.toggle(dados));
             });
         });
+        Fav.onChange(() => coracoes.forEach(atualizar => atualizar()));
 
         /* ============================================================
            3. BOTÃO DE FILTROS
@@ -61,7 +90,21 @@
         document.querySelectorAll('.product-image-wrapper').forEach(wrapper => {
             wrapper.style.cursor = 'pointer';
             wrapper.addEventListener('click', () => {
-                window.location.href = '5-card-de-produto-detalhe.html';
+                const card = wrapper.closest('article');
+                const txt = (sel) => {
+                    const el = card && card.querySelector(sel);
+                    return el ? el.textContent.trim() : '';
+                };
+                const imgEl = wrapper.querySelector('img');
+                const params = new URLSearchParams({
+                    marca:    txt('.product-brand'),
+                    titulo:   txt('.product-title'),
+                    preco:    txt('.product-price'),
+                    desconto: txt('.product-discount'),
+                    img:      imgEl ? (imgEl.getAttribute('src') || '').replace('w=400', 'w=800').replace('q=60', 'q=80') : '',
+                    alt:      imgEl ? imgEl.alt : ''
+                });
+                window.location.href = '5-card-de-produto-detalhe.html?' + params.toString();
             });
         });
 
@@ -72,10 +115,11 @@
         const LOJAS = {
             nike:    '7-pagina-da-loja-nike.html',
             sephora: '7-pagina-da-loja-sephora.html',
-            zara:    '7-pagina-da-loja.html',
+            zara:    '7-pagina-da-loja-zara.html',
             adidas:  '7-pagina-da-loja-adidas.html',
             renner:  '7-pagina-da-loja-renner.html',
-            natura:  '7-pagina-da-loja-natura.html'
+            natura:  '7-pagina-da-loja-natura.html',
+        madero:  '7-pagina-da-loja-madero.html'
         };
         document.querySelectorAll('.view-store-button').forEach(btn => {
             btn.addEventListener('click', (e) => {
