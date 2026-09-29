@@ -54,3 +54,13 @@
                 window.location.href = '4-filtro-do-feed-aberto.html';
             });
         }
+
+        /* ============================================================
+           4. IMAGEM DO PRODUTO
+           ============================================================ */
+        document.querySelectorAll('.product-image-wrapper').forEach(wrapper => {
+            wrapper.style.cursor = 'pointer';
+            wrapper.addEventListener('click', () => {
+                window.location.href = '5-card-de-produto-detalhe.html';
+            });
+        });
