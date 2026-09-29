@@ -169,4 +169,12 @@
                 handleShare
             );
 
-    
+        /* ============================================================
+           4. AÇÃO DO BOTÃO VOLTAR
+           ============================================================ */
+        const backBtn = document.querySelector('.hero-icon-button[aria-label="Voltar"]');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                window.location.href = '3-inicio-feed.html';
+            });
+        }
