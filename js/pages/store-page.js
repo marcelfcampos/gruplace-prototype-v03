@@ -79,3 +79,36 @@
         });
     }
 })();
+
+/* ============================================================
+   SEGUIR SINCRONIZADO v3 — usa o mesmo estado do feed (GruplaceFollow)
+   ============================================================ */
+(function () {
+    const Follow = window.GruplaceFollow;
+    const original = document.getElementById('btn-follow');
+    const tituloEl = document.querySelector('.store-title');
+    if (!original || !tituloEl) return;
+    if (!Follow) {
+        console.error('GruplaceFollow não carregou: confira a tag js/shared/follow-store.js nesta página.');
+        return;
+    }
+    // Clona o botão para remover o handler antigo que só troca o texto.
+    const btn = original.cloneNode(true);
+    original.replaceWith(btn);
+
+    const nome = tituloEl.textContent.trim();
+    const id = Follow.criarId(nome);
+    const aplicar = () => {
+        const ativo = Follow.has(id);
+        btn.textContent = ativo ? 'Seguindo' : '+ Seguir';
+        btn.classList.toggle('store-follow-btn--following', ativo);
+        btn.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+    };
+    aplicar();
+    btn.addEventListener('click', () => {
+        Follow.toggle({ id: id, nome: nome });
+        aplicar();
+    });
+    Follow.onChange(aplicar);
+    console.log('[seguir] loja:', nome, '| id:', id, '| seguindo:', Follow.has(id));
+})();
