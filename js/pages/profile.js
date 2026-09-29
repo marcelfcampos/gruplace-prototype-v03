@@ -34,3 +34,64 @@
                 alert('Você saiu da conta com sucesso.');
             }
         });
+
+// ============================================================
+// 6. LOJAS SEGUIDAS — contador e lista vindos do localStorage
+// ============================================================
+(function () {
+    const Follow = window.GruplaceFollow;
+    const carrossel = document.querySelector('.store-carousel');
+    const statEl = document.querySelector('.profile-stats .profile-stat-item .profile-stat-value');
+    if (!Follow || !carrossel) return;
+
+    function criarLogo(id, nome) {
+        const logo = document.createElement('div');
+        if (id === 'zara') {
+            logo.className = 'store-logo store-logo--dark store-logo--zara';
+            logo.textContent = 'ZARA';
+        } else if (id === 'sephora') {
+            logo.className = 'store-logo store-logo--dark store-logo--sephora';
+            logo.textContent = 'S';
+        } else if (id === 'renner') {
+            logo.className = 'store-logo store-logo--light store-logo--renner';
+            logo.textContent = 'R';
+        } else if (['nike', 'adidas', 'natura', 'madero'].includes(id)) {
+            logo.className = 'store-logo store-logo--light' + (id === 'nike' ? ' store-logo--nike' : '');
+            const img = document.createElement('img');
+            img.src = 'assets/img/marcas/logo-' + id + '.svg';
+            img.alt = nome;
+            img.className = 'store-logo-icon';
+            logo.appendChild(img);
+        } else {
+            logo.className = 'store-logo store-logo--dark';
+            logo.textContent = nome.charAt(0).toUpperCase();
+        }
+        return logo;
+    }
+
+    function render() {
+        const lojas = Follow.getAll();
+        if (statEl) statEl.textContent = String(lojas.length);
+        carrossel.innerHTML = '';
+        if (lojas.length === 0) {
+            const vazio = document.createElement('span');
+            vazio.className = 'store-carousel-label';
+            vazio.textContent = 'Você ainda não segue nenhuma loja.';
+            carrossel.appendChild(vazio);
+            return;
+        }
+        lojas.forEach(loja => {
+            const item = document.createElement('div');
+            item.className = 'store-carousel-item';
+            item.appendChild(criarLogo(loja.id, loja.nome));
+            const label = document.createElement('span');
+            label.className = 'store-carousel-label';
+            label.textContent = loja.nome;
+            item.appendChild(label);
+            carrossel.appendChild(item);
+        });
+    }
+
+    render();
+    Follow.onChange(render);
+})();

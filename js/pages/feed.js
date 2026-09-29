@@ -132,3 +132,33 @@
                 }
             });
         });
+
+        /* ============================================================
+           6. SEGUIR LOJA — alterna "+ Seguir" / "Seguindo" e persiste
+           ============================================================ */
+        (function () {
+            const Follow = window.GruplaceFollow;
+            if (!Follow) return;
+            const atualizadores = [];
+            document.querySelectorAll('.product-card .follow-button').forEach(btn => {
+                const card = btn.closest('.product-card');
+                const marcaEl = card && card.querySelector('.product-brand');
+                if (!marcaEl) return;
+                const nome = marcaEl.textContent.trim();
+                const id = Follow.criarId(nome);
+                const aplicar = () => {
+                    const ativo = Follow.has(id);
+                    btn.textContent = ativo ? 'Seguindo' : '+ Seguir';
+                    btn.classList.toggle('follow-button-active', ativo);
+                    btn.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+                };
+                atualizadores.push(aplicar);
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    Follow.toggle({ id: id, nome: nome });
+                    atualizadores.forEach(fn => fn());
+                });
+            });
+            atualizadores.forEach(fn => fn());
+            Follow.onChange(() => atualizadores.forEach(fn => fn()));
+        })();
