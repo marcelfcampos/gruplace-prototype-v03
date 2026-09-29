@@ -95,3 +95,18 @@
     render();
     Follow.onChange(render);
 })();
+
+// ============================================================
+// 7. CONTADOR DE FAVORITOS — vindo do localStorage (GruplaceFavorites)
+// ============================================================
+(function () {
+    const Fav = window.GruplaceFavorites;
+    const item = document.querySelector('.profile-stat-item--bordered .profile-stat-value');
+    if (!Fav || !item) return;
+
+    function atualizar() {
+        item.textContent = String(Fav.getAll().length);
+    }
+    atualizar();
+    Fav.onChange(atualizar);
+})();
