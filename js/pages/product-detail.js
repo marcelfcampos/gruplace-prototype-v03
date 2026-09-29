@@ -141,7 +141,7 @@
             if (navigator.share) {
 
                 navigator.share({
-                    title: 'Tênis Air Force 1',
+                    title: (document.querySelector('.product-title') || document.body).textContent.trim(),
                     text: 'Confira este produto incrível no gruplace!',
                     url: window.location.href,
                 }).catch(() => { });
@@ -178,3 +178,71 @@
                 window.location.href = '3-inicio-feed.html';
             });
         }
+
+        /* ============================================================
+           5. BOTÃO VER NA LOJA
+           ============================================================ */
+        const ctaBtn = document.querySelector('.cta-button');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', () => {
+                window.location.href = (window.LOJA_DESTINO || '7-pagina-da-loja-nike.html');
+            });
+        }
+
+
+/* ============================================================
+   6. PRODUTO DINÂMICO — preenche a tela conforme a URL
+   ============================================================ */
+(function () {
+    const LOJAS = {
+        nike:    '7-pagina-da-loja-nike.html',
+        sephora: '7-pagina-da-loja-sephora.html',
+        zara:    '7-pagina-da-loja-zara.html',
+        adidas:  '7-pagina-da-loja-adidas.html',
+        renner:  '7-pagina-da-loja-renner.html',
+        natura:  '7-pagina-da-loja-natura.html'
+    };
+    const p = new URLSearchParams(window.location.search);
+    const marca = (p.get('marca') || 'nike').trim();
+    window.LOJA_DESTINO = LOJAS[marca.toLowerCase()] || LOJAS.nike;
+
+    if (!p.get('marca')) return; // sem parâmetros: mantém o produto Nike do HTML
+
+    const titulo = p.get('titulo') || '';
+    const preco = p.get('preco') || '';
+    const desconto = p.get('desconto') || '';
+    const img = p.get('img') || '';
+    const alt = p.get('alt') || titulo;
+
+    const set = (sel, texto) => {
+        const el = document.querySelector(sel);
+        if (el && texto) el.textContent = texto;
+    };
+    set('.store-name', marca);
+    set('.product-title', titulo);
+    set('.price-value', preco);
+
+    const imgEl = document.getElementById('product-img');
+    if (imgEl) {
+        try {
+            const u = new URL(img, window.location.href);
+            if (img && ['http:', 'https:', 'file:'].includes(u.protocol)) imgEl.src = img;
+        } catch (e) { /* mantém a imagem do HTML */ }
+        imgEl.alt = alt;
+    }
+
+    const descEl = Array.from(document.querySelectorAll('span, div, p'))
+        .find(e => e.children.length === 0 && /OFF/i.test(e.textContent));
+    if (descEl) {
+        if (desconto) descEl.textContent = desconto;
+        else descEl.style.display = 'none';
+    }
+
+    const texto = Array.from(document.querySelectorAll('p'))
+        .find(e => e.textContent.includes('Air Force'));
+    if (texto) {
+        texto.textContent = titulo + ' da ' + marca + '. Confira os detalhes e as ofertas na loja.';
+    }
+
+    document.title = 'gruplace - ' + titulo;
+})();
