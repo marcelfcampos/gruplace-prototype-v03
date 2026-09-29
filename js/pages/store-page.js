@@ -67,3 +67,15 @@
             });
         });
     
+
+/* ============================================================
+   BOTÃO VOLTAR — volta para a tela 3
+   ============================================================ */
+(function () {
+    const backBtn = document.querySelector('.store-back-btn');
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            window.location.href = '3-inicio-feed.html';
+        });
+    }
+})();

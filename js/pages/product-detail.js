@@ -200,7 +200,8 @@
         zara:    '7-pagina-da-loja-zara.html',
         adidas:  '7-pagina-da-loja-adidas.html',
         renner:  '7-pagina-da-loja-renner.html',
-        natura:  '7-pagina-da-loja-natura.html'
+        natura:  '7-pagina-da-loja-natura.html',
+        madero:  '7-pagina-da-loja-madero.html'
     };
     const p = new URLSearchParams(window.location.search);
     const marca = (p.get('marca') || 'nike').trim();
