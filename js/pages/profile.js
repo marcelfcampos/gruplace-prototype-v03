@@ -110,3 +110,40 @@
     atualizar();
     Fav.onChange(atualizar);
 })();
+
+// ============================================================
+// 8. INTERESSES — lista e contador vindos do localStorage
+// ============================================================
+(function () {
+    const Int = window.GruplaceInterests;
+    const container = document.querySelector('.interest-pills');
+    if (!Int || !container) return;
+
+    const statItem = Array.from(document.querySelectorAll('.profile-stat-item')).find(el => {
+        const l = el.querySelector('.profile-stat-label');
+        return l && l.textContent.trim() === 'Interesses';
+    });
+    const statValue = statItem && statItem.querySelector('.profile-stat-value');
+
+    function render() {
+        const lista = Int.getAll();
+        if (statValue) statValue.textContent = String(lista.length);
+        container.innerHTML = '';
+        if (lista.length === 0) {
+            const vazio = document.createElement('span');
+            vazio.className = 'store-carousel-label';
+            vazio.textContent = 'Você ainda não selecionou nenhum interesse.';
+            container.appendChild(vazio);
+            return;
+        }
+        lista.forEach(i => {
+            const pill = document.createElement('span');
+            pill.className = 'interest-pill';
+            pill.textContent = i.nome;
+            container.appendChild(pill);
+        });
+    }
+
+    render();
+    Int.onChange(render);
+})();

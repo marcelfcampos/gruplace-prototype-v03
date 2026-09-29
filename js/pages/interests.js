@@ -11,6 +11,7 @@
             pill.addEventListener('click', () => {
 
                 pill.classList.toggle('is-selected');
+                salvarInteresses();
 
             });
 
@@ -54,3 +55,24 @@
 
         });
 
+
+/* ============================================================
+   5. PERSISTÊNCIA DOS INTERESSES (GruplaceInterests)
+   ============================================================ */
+function salvarInteresses() {
+    const Int = window.GruplaceInterests;
+    if (!Int) return;
+    const lista = Array.from(document.querySelectorAll('.interest-pill.is-selected')).map(p => ({
+        id: p.dataset.interest,
+        nome: p.textContent.replace(/\s+/g, ' ').trim()
+    }));
+    Int.set(lista);
+}
+
+(function () {
+    const Int = window.GruplaceInterests;
+    if (!Int) return;
+    document.querySelectorAll('.interest-pill').forEach(p => {
+        if (Int.has(p.dataset.interest)) p.classList.add('is-selected');
+    });
+})();
