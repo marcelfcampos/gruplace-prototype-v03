@@ -25,13 +25,7 @@
            ============================================================ */
         const applyBtn = document.getElementById('apply-filters');
         applyBtn.addEventListener('click', () => {
-            const activeFilters = Array.from(filterChips)
-                .filter(chip => chip.classList.contains('filter-chip-active'))
-                .map(chip => chip.textContent.trim());
-
-            alert(activeFilters.length > 0
-                ? `Filtros aplicados:\n- ${activeFilters.join('\n- ')}`
-                : "Nenhum filtro selecionado.");
+            window.location.href = '3-inicio-feed.html';
         });
 
         /* ============================================================
