@@ -1,5 +1,5 @@
 .DS_Store
 *.bak*
 *.original
-.backup-etapa-10/
-_backups/
+.vercel/
+node_modules/
