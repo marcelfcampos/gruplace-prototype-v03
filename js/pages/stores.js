@@ -84,9 +84,28 @@
                 const storeName =
                     card.querySelector('h3').textContent;
 
-                alert(
-                    `Você clicou na loja: ${storeName}`
-                );
+                const destino = card.dataset.href ||
+                    (card.dataset.store ? `7-pagina-da-loja-${card.dataset.store}.html` : null);
+
+                if (destino) {
+                    window.location.href = destino;
+                }
             });
         });
 
+
+// ============================================================
+// 4. ACESSIBILIDADE DOS CARDS (cursor, foco e teclado)
+// ============================================================
+storeCards.forEach(card => {
+    if (!card.dataset.store && !card.dataset.href) return;
+    card.style.cursor = 'pointer';
+    card.setAttribute('role', 'link');
+    card.setAttribute('tabindex', '0');
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+        }
+    });
+});
