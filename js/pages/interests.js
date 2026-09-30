@@ -1,3 +1,6 @@
+/* Quando aberta pelo perfil (?origem=perfil), Voltar e Continuar retornam ao perfil */
+const ORIGEM_PERFIL = new URLSearchParams(window.location.search).get('origem') === 'perfil';
+
 
         /* ============================================================
            2. SELEÇÃO DOS INTERESSES
@@ -24,7 +27,7 @@
 
         document.getElementById('back-btn').addEventListener('click', () => {
 
-            window.location.href = 'index.html';
+            window.location.href = ORIGEM_PERFIL ? '11-perfil.html' : 'index.html';
 
         });
 
@@ -49,7 +52,7 @@
 
             } else {
 
-                window.location.href = '3-inicio-feed.html';
+                window.location.href = ORIGEM_PERFIL ? '11-perfil.html' : '3-inicio-feed.html';
 
             }
 

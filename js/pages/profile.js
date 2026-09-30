@@ -14,7 +14,7 @@
         // ============================================================
         const editInterestsBtn = document.getElementById('edit-interests');
         editInterestsBtn.addEventListener('click', () => {
-            alert('Modo de edição de interesses ativado!');
+            window.location.href = '2-primeiro-acesso-interesses.html?origem=perfil';
         });
 
         // ============================================================
