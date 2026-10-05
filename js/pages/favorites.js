@@ -125,3 +125,82 @@
     });
 
   
+
+/* =========================================================
+   VER NA LOJA — abre a página da loja do card
+   ========================================================= */
+(function () {
+  const DESTINOS_LOJA = {
+    'zara': '7-pagina-da-loja-zara.html',
+    'nike': '7-pagina-da-loja-nike.html',
+    'sephora': '7-pagina-da-loja-sephora.html',
+    'renner': '7-pagina-da-loja-renner.html',
+    'c-a': '7-pagina-da-loja-cea.html',
+    'cea': '7-pagina-da-loja-cea.html',
+    'apple': '7-pagina-da-loja-apple.html',
+    'adidas': '7-pagina-da-loja-adidas.html',
+    'natura': '7-pagina-da-loja-natura.html',
+    'madero': '7-pagina-da-loja-madero.html'
+  };
+  const grid = document.getElementById('products-grid-container');
+  if (!grid) return;
+
+  function slug(texto) {
+    return String(texto || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
+  grid.querySelectorAll('.store-link-button').forEach(btn => { btn.style.cursor = 'pointer'; });
+
+  grid.addEventListener('click', (event) => {
+    const botao = event.target.closest('.store-link-button');
+    if (!botao) return;
+    const card = botao.closest('.product-card');
+    const marcaEl = card && card.querySelector('.product-brand');
+    const destino = marcaEl ? DESTINOS_LOJA[slug(marcaEl.textContent)] : null;
+    if (destino) {
+      window.location.href = destino;
+    }
+  });
+})();
+
+/* =========================================================
+   SEGUIR LOJA NA TELA 9 — usa o estado compartilhado (GruplaceFollow)
+   ========================================================= */
+(function () {
+  const Follow = window.GruplaceFollow;
+  const grid = document.getElementById('products-grid-container');
+  if (!Follow || !grid) return;
+
+  function dadosDoCard(botao) {
+    const card = botao.closest('.product-card');
+    const marcaEl = card && card.querySelector('.product-brand');
+    if (!marcaEl) return null;
+    const nome = marcaEl.textContent.trim();
+    return { id: Follow.criarId(nome), nome: nome };
+  }
+
+  function aplicar(botao) {
+    const d = dadosDoCard(botao);
+    if (!d) return;
+    const ativo = Follow.has(d.id);
+    botao.textContent = ativo ? 'Seguindo' : 'Seguir';
+    botao.setAttribute('aria-pressed', ativo ? 'true' : 'false');
+  }
+
+  function aplicarTodos() {
+    grid.querySelectorAll('.store-follow-button').forEach(aplicar);
+  }
+
+  grid.addEventListener('click', (event) => {
+    const botao = event.target.closest('.store-follow-button');
+    if (!botao) return;
+    const d = dadosDoCard(botao);
+    if (!d) return;
+    Follow.toggle(d);
+    aplicarTodos();
+  });
+
+  aplicarTodos();
+  Follow.onChange(aplicarTodos);
+})();
