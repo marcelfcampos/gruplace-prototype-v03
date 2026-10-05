@@ -223,41 +223,47 @@
             letter-spacing: -0.025em;
         }
 
+        /* Descrição: sobreposta ao degradê no topo da imagem */
         .welcome-description {
-            max-width: 280px;
-            margin: 0;
-            color: var(--color-slate-500);
-            font-size: 0.75rem;
-            line-height: 1.625;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            width: calc(100% - 2.5rem);
+            max-width: 20rem;
+            margin: 0 auto;
+            padding-top: 1rem;
+            color: var(--color-slate-700, #334155);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            line-height: 1.6;
+            text-shadow: 0 0 8px rgb(255 255 255 / 0.9);
         }
 
         /* Imagem ilustrativa */
         .welcome-image-container {
             position: relative;
             width: 100%;
-            height: 14rem;
             overflow: hidden;
-            border: 1px solid var(--color-slate-100);
-            border-radius: 1.5rem;
-            box-shadow:
-                0 4px 6px -1px rgb(0 0 0 / 0.1),
-                0 2px 4px -2px rgb(0 0 0 / 0.1);
+            background-color: var(--color-white);
         }
 
         .welcome-image {
             width: 100%;
-            height: 100%;
+            height: auto;
             display: block;
-            object-fit: cover;
         }
 
         .welcome-image-overlay {
             position: absolute;
             inset: 0;
-            background-image: linear-gradient(to top,
-                    rgb(255 255 255 / 0.2),
-                    transparent,
-                    transparent);
+            pointer-events: none;
+            background-image: linear-gradient(to bottom,
+                    rgb(255 255 255 / 1) 0%,
+                    rgb(255 255 255 / 0.9) 20%,
+                    rgb(255 255 255 / 0.55) 40%,
+                    rgb(255 255 255 / 0) 65%);
         }
 
         /* Rodapé / ações */
@@ -352,11 +358,9 @@
             }
 
             .welcome-description {
-                font-size: 0.875rem;
-            }
-
-            .welcome-image-container {
-                height: 16rem;
+                font-size: 0.9375rem;
+                max-width: 22rem;
+                padding-top: 1.25rem;
             }
 
             .start-button {
@@ -463,10 +467,8 @@
             }
 
             .welcome-description {
-                max-width: 24rem;
-            }
-
-            .welcome-image-container {
-                height: 18rem;
+                max-width: 28rem;
+                font-size: 1rem;
+                padding-top: 1.5rem;
             }
         }
