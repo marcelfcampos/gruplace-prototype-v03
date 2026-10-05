@@ -44,6 +44,20 @@
     const statEl = document.querySelector('.profile-stats .profile-stat-item .profile-stat-value');
     if (!Follow || !carrossel) return;
 
+    // Destinos das páginas de loja (arquivos reais, em minúsculas)
+    const DESTINOS_LOJA = {
+        'zara': '7-pagina-da-loja-zara.html',
+        'nike': '7-pagina-da-loja-nike.html',
+        'sephora': '7-pagina-da-loja-sephora.html',
+        'renner': '7-pagina-da-loja-renner.html',
+        'c-a': '7-pagina-da-loja-cea.html',
+        'cea': '7-pagina-da-loja-cea.html',
+        'apple': '7-pagina-da-loja-apple.html',
+        'adidas': '7-pagina-da-loja-adidas.html',
+        'natura': '7-pagina-da-loja-natura.html',
+        'madero': '7-pagina-da-loja-madero.html'
+    };
+
     function criarLogo(id, nome) {
         const logo = document.createElement('div');
         if (id === 'zara') {
@@ -88,6 +102,20 @@
             label.className = 'store-carousel-label';
             label.textContent = loja.nome;
             item.appendChild(label);
+            const destino = DESTINOS_LOJA[loja.id];
+            if (destino) {
+                item.setAttribute('role', 'link');
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('aria-label', 'Ver página da loja ' + loja.nome);
+                item.style.cursor = 'pointer';
+                item.addEventListener('click', () => { window.location.href = destino; });
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.location.href = destino;
+                    }
+                });
+            }
             carrossel.appendChild(item);
         });
     }
